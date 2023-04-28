@@ -48,7 +48,9 @@ class UserSeeder extends Seeder
         ]);
 
         $user=User::create([
-            'name' => 'Super Administrator',
+            'fname' => 'Super',
+            'lname' => 'Administrator',
+            'email' => 'admin@domain.com',
             'username' => 'S.Admin',
             'office_id' => $office->id,
             'is_password_default' => false,
