@@ -307,6 +307,18 @@
                                         @enderror
                                        </div>
                                     </div>
+                                    <div class="mb-3">
+                                        <div class="col-lg-12">
+                                            <label class="form-label">Email</label>
+                                            <input type="text" class="form-control" wire:model.defer="email">
+
+                                            @error('email')
+                                            <div class="mt-2">
+                                                <span class="text-danger fw-bold">{{$message}}</span>
+                                            </div>
+                                            @enderror
+                                           </div>
+                                    </div>
                                     <div>
                                         <label class="form-label">Office assigned</label>
                                         <select  class="form-control"  wire:model.defer="a_office">
@@ -376,7 +388,8 @@
                            <thead>
                                <tr>
                                    <th><strong>#</strong></th>
-                                   <th><strong>Name</strong></th>
+                                   <th><strong>Full Name</strong></th>
+                                   <th><strong>Email</strong></th>
                                    <th><strong>Username</strong></th>
                                    <th><strong>Office</strong></th>
                                    <th></th>
@@ -386,7 +399,8 @@
                                @foreach ($users as $user)
                                <tr>
                                    <td><strong>{{$loop->iteration}}</strong></td>
-                                   <td>{{$user->name}}</td>
+                                   <td>{{$user->fname . ' '.$user->lname}}</td>
+                                   <td>{{$user->email}}</td>
                                    <td>{{$user->username}}</td>
                                    <td>{{$user->office->location}}</td>
                                     {{-- <td>

@@ -15,7 +15,7 @@ class Settings extends Component
    public $roles,$role_name;
    public $offices,$location,$min_amount,$max_amount;
    public $projects,$project_name;
-   public $users,$f_name,$l_name,$a_role="",$a_office="";
+   public $users,$f_name,$l_name,$email,$a_role="",$a_office="";
     public function render()
     {
         return view('livewire.settings.settings');
@@ -122,6 +122,7 @@ class Settings extends Component
         $this->validate([
             'f_name' => 'required|string|max:50',
             'l_name' => 'required|string|max:50',
+            'email' => 'required|unique:users',
             'a_role' => 'required',
             'a_office' => 'required'
             ]);
@@ -129,13 +130,14 @@ class Settings extends Component
             $f_name=ucfirst($this->f_name);
             $l_name=ucfirst($this->l_name);
 
-                $full_name=$f_name.' '.$l_name;
                 //username innitals f.lastname
                 $username=substr($f_name,0,1).'.'.$l_name;
                 $password=Hash::make('Staff@2023');
 
                 $user=User::create([
-                    'name' => $f_name." ".$l_name,
+                    'fname' => $f_name,
+                    'lname' => $l_name,
+                    'email' => $this->email,
                     'username' => $username,
                     'password' => $password,
                     'office_id' => $this->a_office,
