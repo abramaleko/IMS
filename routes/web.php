@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContractsController;
 use App\Http\Controllers\InvestorController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,3 +67,5 @@ Route::prefix('contracts')->middleware('auth')->group(function(){
 Route::get('/settings',[SettingsController::class,'index'])->name('settings');
 
 Route::get('/settings/{role}/role',[SettingsController::class,'rolePermissions'])->name('settings.role-permissions');
+
+Route::get('/profile',ProfileController::class)->middleware('auth')->name('user-profile');
