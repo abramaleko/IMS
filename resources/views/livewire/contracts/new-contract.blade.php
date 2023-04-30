@@ -55,6 +55,25 @@
                                 <span class="text-danger fw-bold">{{$message}}</span>
                               @enderror
                           </div>
+                          <div class="mb-4 col-xl-6 col-md-6">
+                            <label class="form-label font-w600">Asset<span class="text-danger scale5 ms-2">*</span></label>
+                            <select wire:model="asset" class="default-select form-control wide solid" >
+                                <option value="" selected disabled>Choose ..</option>
+                                @foreach ($assets as $asset)
+                                  <option value="{{$asset->id}}">{{$asset->asset_name}}</option>
+                                @endforeach
+                            </select>
+                            @error('asset')
+                            <span class="text-danger fw-bold">{{$message}}</span>
+                          @enderror
+                        </div>
+                          <div class="mb-4 col-xl-6 col-md-6">
+                            <label class="form-label font-w600">Asset address<span class="text-danger scale5 ms-2">*</span></label>
+                            <input type="text" wire:model.defer="asset_address" class="form-control solid">
+                              @error('asset_address')
+                                <span class="text-danger fw-bold">{{$message}}</span>
+                              @enderror
+                          </div>
                           <div class="mb-4 col-xl-12 col-md-12">
                             <label class="form-label font-w600">Payment Slips Upload<span class="text-danger scale5 ms-2">*</span></label>
                             <small class="text-muted">(Allowed files formarts are pdf and images each not exceeding 5Mb)</small>

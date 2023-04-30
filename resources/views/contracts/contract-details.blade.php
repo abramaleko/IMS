@@ -77,7 +77,9 @@
                                     <div class="col-xl-6">
                                         <div class="ms-4">
                                             <p class="mb-3 font-w500"><span class="custom-label">Project Name :</span><span class="font-w400"> {{$contract->project->name}} </span></p>
-                                            <p class="mb-3 font-w500"><span class="custom-label">Amount Invested :</span><span class="font-w400"> {{number_format($contract->amount)}} Tshs</span></p>
+                                            <p class="mb-3 font-w500"><span class="custom-label">Amount Invested($) :</span><span class="font-w400">{{number_format($contract->amount)}}</span></p>
+                                            <p class="mb-3 font-w500"><span class="custom-label">Asset :</span><span class="font-w400">{{$contract->asset->asset_name}}</span></p>
+                                            <p class="mb-3 font-w500"><span class="custom-label">Asset address :</span><span class="font-w400">{{$contract->asset_address ?? ''}}</span></p>
                                             <p class="mb-3 font-w500"><span class="custom-label"> Start Date :</span><span class="font-w400"> {{$contract->start_date}}</span></p>
                                             <p class="mb-3 font-w500"><span class="custom-label"> End Date :</span><span class="font-w400">{{$contract->end_date}}</span></p>
                                             <p class="mb-3 font-w500"><span class="custom-label">ROI Period :</span><span class="font-w400">{{$contract->roi_period}} Months</span></p>

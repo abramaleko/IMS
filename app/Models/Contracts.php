@@ -28,4 +28,7 @@ class Contracts extends Model
     {
         return $this->belongsTo(User::class,'modified_by');
     }
+    public function asset(){
+        return $this->belongsTo(Assets::class,'asset_id');
+    }
 }

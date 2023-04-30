@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Contracts;
 
+use App\Models\Assets;
 use App\Models\Contracts;
 use App\Models\Investors;
 use App\Models\Projects;
@@ -17,8 +18,8 @@ class NewContract extends Component
     use WithFileUploads;
 
     public $investors,$projects;
-    public $investor_id="",$project_id="",$amount,$roi_period,$start_date,$contract_duration,$payment_slips=[],$contracts=[],$additional_description,$additional_attachments=[];
-
+    public $investor_id="",$project_id="",$amount,$roi_period,$start_date,$contract_duration,$payment_slips=[],$contracts=[],$additional_description,$additional_attachments=[],$asset_address,$asset='';
+    public $assets;
 
     public function render()
     {
@@ -29,6 +30,7 @@ class NewContract extends Component
     {
         $this->investors=Investors::all();
         $this->projects=Projects::all();
+        $this->assets=Assets::all();
     }
 
     protected $rules=[
@@ -43,7 +45,9 @@ class NewContract extends Component
         'contracts' =>'required',
          'contracts.*' => 'required|mimes:png,jpeg,jpg,pdf|max:5120', // 5MB Max
          'additional_description' => 'string|max:500|nullable',
-         'additional_attachments.*' => 'nullable|mimes:png,jpeg,jpg,pdf|max:5120' // 5MB Max
+         'additional_attachments.*' => 'nullable|mimes:png,jpeg,jpg,pdf|max:5120', // 5MB Max
+         'asset_address' => 'nullable|string',
+         'asset'=> 'required'
     ];
 
     public function resetForm(){
@@ -89,6 +93,9 @@ class NewContract extends Component
         $contract_info->end_date=Carbon::parse($this->start_date)->addMonths($this->contract_duration);
         $contract_info->roi_period=$this->roi_period;
         $contract_info->additional_description=$this->additional_description;
+        $contract_info->asset_id=$this->asset;
+        $contract_info->asset_address=$this->asset_address;
+
 
         //attachments
         $path=[];
