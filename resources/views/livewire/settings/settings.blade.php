@@ -92,6 +92,7 @@
                             <i class="fas fa-plus me-2"></i>
                             Add Project
                         </button>
+                        <!--add new project-->
                         <div class="modal fade" id="newProjectModal"  aria-hidden="true" wire:ignore.self>
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -124,9 +125,51 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!--edit project-->
+                        <div class="modal fade" id="editProject"  aria-hidden="true" wire:ignore.self>
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Change Project Name</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Project Name</label>
+                                            <input type="text" class="form-control" wire:model.defer="selectedProject.name">
+
+                                            @error('selectedProject.name')
+                                            <div class="mt-2">
+                                                <span class="text-danger fw-bold">{{$message}}</span>
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" wire:click="updateProject" wire:loading.remove>Update changes</button>
+
+                                        <div wire:loading wire:target="updateProject">
+                                            <p class="text-success fw-bold" style="font-size: 15px">updating ...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         </div>
                 </div>
-                <div class="card-body"style="overflow-y: auto;">
+                <div class="card-body"style="overflow-y: auto;" x-data="{selectedProject: @entangle('selectedProject')}">
+                    @if (session()->has('ProjectUpdate'))
+                    <div class="alert alert-success alert-dismissible fade show">
+                      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                      {{ session('ProjectUpdate') }}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                      </button>
+                  </div>
+                    @endif
                     <div class="">
                         <table class="table table-responsive-md">
                             <thead>
@@ -144,7 +187,11 @@
                                 <td>{{$project->name}}</td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="#" class="me-3 btn-xs sharp btn-secondary light">
+                                        <button @click="
+                                        selectedProject= @js($project);
+                                        $('#editProject').modal('show');
+                                        "
+                                        type="button" class="me-3 btn-xs sharp btn-secondary light">
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15px" height="15px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <rect x="0" y="0" width="24" height="24"></rect>
@@ -152,7 +199,7 @@
                                                     <rect fill="#000000" opacity="0.3" x="5" y="20" width="15" height="2" rx="1"></rect>
                                                 </g>
                                             </svg>
-                                        </a>
+                                        </button>
                                         <a href="#" wire:click="deleteProject({{$project->id}})" class="shadow btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </td>

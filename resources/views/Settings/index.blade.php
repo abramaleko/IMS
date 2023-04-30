@@ -42,6 +42,10 @@ window.addEventListener('closeUserModal', event => {
       $("#newUserModal").modal('toggle');
 })
 
+window.addEventListener('closeEditProjectModal', event => {
+      $("#editProject").modal('toggle');
+})
+
 
 </script>
 @endsection

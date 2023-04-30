@@ -14,7 +14,7 @@ class Settings extends Component
 {
    public $roles,$role_name;
    public $offices,$location,$min_amount,$max_amount;
-   public $projects,$project_name;
+   public $projects,$project_name,$selectedProject;
    public $users,$f_name,$l_name,$email,$a_role="",$a_office="";
     public function render()
     {
@@ -106,6 +106,22 @@ class Settings extends Component
 
         $this->dispatchBrowserEvent('closeProjectModal');
 
+    }
+
+    public function updateProject(){
+        $this->validate([
+            'selectedProject.name' => 'required|string'
+        ]);
+
+        $project=Projects::find($this->selectedProject['id']);
+        $project->name=$this->selectedProject['name'];
+        $project->save();
+
+        $this->projects=Projects::all();
+
+        session()->flash('ProjectUpdate', 'Successfully updated project name');
+
+        $this->dispatchBrowserEvent('closeEditProjectModal');
     }
 
     public function deleteProject($project_id)
