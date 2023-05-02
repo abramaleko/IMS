@@ -49,33 +49,8 @@ class EditContract extends Component
     ];
 
 
-    protected function validateAmountCredibility(){
-
-        //custom validation for  amount to check if the user in the office assigned has
-       //the credibility to upload the amount inserted
-
-         $user_office=Auth::user()->office;
-
-         if ( ($user_office->min_amount<= $this->amount) && ($this->amount <= $user_office->max_amount) ) {
-            return true;
-         }
-         else {
-             return false;
-         }
-      }
-
     public function editContract()
     {
-    //calls the validator instance for validation
-    $this->withValidator(function (Validator $validator) {
-        $validator->after(function ($validator) {
-            if (! $this->validateAmountCredibility()) {
-                $validator->errors()->add('amount', 'Your office does not have the credibility to upload the contract of the mentioned amount');
-            }
-        });
-    })->validate();
-
-
       $this->contract->amount=$this->amount;
       $this->contract->roi_period=$this->roi_period;
 
