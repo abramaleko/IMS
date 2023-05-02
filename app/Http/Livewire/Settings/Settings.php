@@ -111,7 +111,7 @@ class Settings extends Component
 
                 //username innitals f.lastname
                 $username=substr($f_name,0,1).'.'.$l_name;
-                $password=Hash::make('Staff@2023');
+                $password=Hash::make(config('app.staff_password'));
 
                 $user=User::create([
                     'fname' => $f_name,
