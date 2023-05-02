@@ -3,8 +3,11 @@
 namespace App\Http\Livewire\Investors;
 
 use App\Models\Investors;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+
 
 class NewInvestor extends Component
 {
@@ -31,7 +34,7 @@ class NewInvestor extends Component
             'gender' => 'required',
             'residence' => 'required',
             'phone_no' => 'required',
-            'email' => 'nullable|email',
+            'email' => 'required|email',
             'id_copy'  => 'required|mimes:png,jpeg,jpg,pdf|max:4096',
             'investor_image'  => 'nullable|image|max:4096',
         ],
@@ -68,8 +71,6 @@ class NewInvestor extends Component
 
             ]);
 
-
-
             //inserts the data
 
             $data= new Investors();
@@ -90,7 +91,7 @@ class NewInvestor extends Component
             if ($this->investor_image) {
                 //investor image
                 // $path=$this->investor_image->storeAs('investor_images', $this->investor_name.' id'.mt_rand(100,10000));
-                $path=$this->investor_image->store('investor_images');
+                $path=$this->investor_image->store('profile-photos','public');
                 $data->image_path=$path;
             }
 
@@ -110,11 +111,30 @@ class NewInvestor extends Component
 
             $data->save();
 
+              //create a new user with a role of investor
+              $fullname = $this->investor_name;
+              $name_parts = explode(' ', $fullname);
+              $f_name = $name_parts[0];
+              $l_name = $name_parts[1];
+
+              //username innitals f.lastname
+              $username=substr($f_name,0,1).'.'.$l_name;
+              $password=Hash::make(config('app.investor_password'));
+
+              $user=User::create([
+                  'fname' => $f_name,
+                  'lname' => $l_name,
+                  'email' => $this->email,
+                  'username' => $username,
+                  'password' => $password,
+                  'profile_path' => $data->image_path,
+                  'is_password_default'=> true,
+                  'investor_id' => $data->id,
+              ]);
+
+              $user->assignRole('Investor');
+
             return redirect()->route('investors.show')->with('success','Successfully registered investor');
-
-
-
-
 
     }
 

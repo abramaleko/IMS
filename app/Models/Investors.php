@@ -24,4 +24,8 @@ class Investors extends Model
     {
         return $this->hasMany(Contracts::class,'investor_id');
     }
+
+    public function user(){
+        return $this->hasOne(User::class,'investor_id');
+    }
 }

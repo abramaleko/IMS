@@ -27,7 +27,9 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'is_password_default'
+        'is_password_default',
+        'investor_id',
+        'profile_path',
     ];
 
     /**
@@ -59,9 +61,10 @@ class User extends Authenticatable
     //     return $this->belongsTo(Offices::class, 'office_id');
     // }
 
-    public function profilePhotoUrl()
+    public function profilePhotoUrl($id=null)
     {
-        $user=Auth::user();
+        $id == null ? $user=Auth::user() : $user=User::find($id);
+
         $fullname=$user->fname.' '.$user->lname;
 
         return $user->profile_path
