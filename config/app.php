@@ -30,6 +30,20 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+      /*
+    |--------------------------------------------------------------------------
+    | Default Password
+    |--------------------------------------------------------------------------
+    |
+    | This determines the default password for staff users and investors when
+      first registered to the system which are required to update it when first
+      logged in.
+    |
+    */
+
+    'staff_password' => 'Staff@2023',
+    'investor_password' => 'Investor@2023',
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
