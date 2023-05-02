@@ -219,105 +219,6 @@
         <div class="col-xl-12">
             <div class="card" style="max-height: 25rem;">
                <div class="card-header">
-                   <h4 class="card-title">Office Locations</h4>
-                   <div>
-                       {{-- <a href="{{route('investors.index')}}" class="btn btn-primary me-3 btn-sm">Add New Role</a> --}}
-                       <button type="button" class="mb-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#newLocationModal">
-                           <i class="fas fa-plus me-2"></i>
-                           Add Location
-                       </button>
-                       <div class="modal fade" id="newLocationModal"  aria-hidden="true" wire:ignore.self>
-                           <div class="modal-dialog" role="document">
-                               <div class="modal-content">
-                                   <div class="modal-header">
-                                       <h5 class="modal-title">Register Location</h5>
-                                       <button type="button" class="btn-close" data-bs-dismiss="modal">
-                                       </button>
-                                   </div>
-                                   <div class="modal-body">
-
-                                       <div class="mb-3">
-                                           <label class="form-label">Location Name</label>
-                                           <input type="text" class="form-control" wire:model.defer="location">
-
-                                           @error('location')
-                                           <div class="mt-2">
-                                               <span class="text-danger fw-bold">{{$message}}</span>
-                                           </div>
-                                           @enderror
-                                       </div>
-
-                                       <div class="mb-3">
-                                        <label class="form-label">Contract Sign Minimum Amount</label>
-                                        <input type="number" class="form-control" wire:model.defer="min_amount">
-
-                                        @error('min_amount')
-                                        <div class="mt-2">
-                                            <span class="text-danger fw-bold">{{$message}}</span>
-                                        </div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label">Contract Sign Maximum Amount</label>
-                                        <input type="number" class="form-control" wire:model.defer="max_amount">
-
-                                        @error('max_amount')
-                                        <div class="mt-2">
-                                            <span class="text-danger fw-bold">{{$message}}</span>
-                                        </div>
-                                        @enderror
-                                    </div>
-
-
-                                   </div>
-                                   <div class="modal-footer">
-                                       <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                                       <button type="button" class="btn btn-primary" wire:click="newLocation" wire:loading.remove>Save changes</button>
-
-                                       <div wire:loading wire:target="newLocation">
-                                           <p class="text-success fw-bold" style="font-size: 15px">saving ...</p>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       </div>
-               </div>
-               <div class="card-body" style="overflow-y: auto;">
-                   <div class="">
-                       <table class="table table-responsive-md">
-                           <thead>
-                               <tr>
-                                   <th><strong>#</strong></th>
-                                   <th><strong>Offices</strong></th>
-                                   <th><strong>Min Amount</strong></th>
-                                   <th><strong>Max Amount</strong></th>
-                                   <th></th>
-                               </tr>
-                           </thead>
-                           <tbody>
-                               @foreach ($offices as $office)
-                               <tr>
-                                   <td><strong>{{$loop->iteration}}</strong></td>
-                                   <td>{{$office->location}}</td>
-                                   <td>{{number_format($office->min_amount)}} Tshs</td>
-                                   <td>{{number_format($office->max_amount)}} Tshs</td>
-                                    <td><a href="#" wire:click="deleteOffice({{$office->id}})"  class="shadow btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a></td>
-                               </tr>
-                               @endforeach
-                           </tbody>
-                       </table>
-                   </div>
-               </div>
-            </div>
-         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xl-12">
-            <div class="card" style="max-height: 25rem;">
-               <div class="card-header">
                    <h4 class="card-title">{{env('APP_NAME')}} Users</h4>
                    <div>
                        <button type="button" class="mb-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#newUserModal">
@@ -367,21 +268,6 @@
                                             </div>
                                             @enderror
                                            </div>
-                                    </div>
-                                    <div>
-                                        <label class="form-label">Office assigned</label>
-                                        <select  class="form-control"  wire:model.defer="a_office">
-                                         <option value="" selected disabled>Please select</option>
-                                            @foreach ($offices as $office)
-                                        <option value="{{$office->id}}">{{$office->location}}</option>
-                                        @endforeach
-
-                                    </select>
-                                    @error('a_office')
-                                    <div class="mt-2">
-                                        <span class="text-danger fw-bold">{{$message}}</span>
-                                    </div>
-                                    @enderror
                                     </div>
                                     <div style="margin-top: 1.5rem;">
                                         <label class="form-label">Role assigned</label>
@@ -440,7 +326,6 @@
                                    <th><strong>Full Name</strong></th>
                                    <th><strong>Email</strong></th>
                                    <th><strong>Username</strong></th>
-                                   <th><strong>Office</strong></th>
                                    <th></th>
                                </tr>
                            </thead>
@@ -451,7 +336,6 @@
                                    <td>{{$user->fname . ' '.$user->lname}}</td>
                                    <td>{{$user->email}}</td>
                                    <td>{{$user->username}}</td>
-                                   <td>{{$user->office->location}}</td>
                                     {{-- <td>
                                         <a href="{{route('settings.role-permissions',$role->id)}}" class="me-3 btn-xs sharp btn-secondary light">
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15px" height="15px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">

@@ -13,9 +13,8 @@ use Spatie\Permission\Models\Role;
 class Settings extends Component
 {
    public $roles,$role_name;
-   public $offices,$location,$min_amount,$max_amount;
    public $projects,$project_name,$selectedProject;
-   public $users,$f_name,$l_name,$email,$a_role="",$a_office="";
+   public $users,$f_name,$l_name,$email,$a_role="";
     public function render()
     {
         return view('livewire.settings.settings');
@@ -24,7 +23,6 @@ class Settings extends Component
     public function mount(){
 
         $this->roles=Role::all();
-        $this->offices=Offices::all();
         $this->projects=Projects::all();
         $this->users=User::all();
 
@@ -54,41 +52,8 @@ class Settings extends Component
 
         //update roles
         $this->roles=Role::all();
-
     }
 
-    public function newLocation()
-    {
-        $this->validate([
-            'location' => 'required|string',
-            'min_amount' => 'required|integer',
-            'max_amount' => 'required|integer'
-
-        ]);
-
-        Offices::create([
-            'location'=>ucfirst($this->location),
-             'min_amount'=> $this->min_amount,
-             'max_amount' => $this->max_amount
-        ]);
-
-
-        $this->reset('location','min_amount','max_amount');
-
-        //update offices
-        $this->offices=Offices::all();
-
-        $this->dispatchBrowserEvent('closeOfficeModal');
-    }
-
-    public function deleteOffice($office_id)
-    {
-        Offices::find($office_id)->delete();
-
-        //update offices
-        $this->offices=Offices::all();
-
-    }
 
     public function newProject()
     {
@@ -134,13 +99,11 @@ class Settings extends Component
 
     public function newUser()
     {
-        // dd($this->a_role);
         $this->validate([
             'f_name' => 'required|string|max:50',
             'l_name' => 'required|string|max:50',
             'email' => 'required|unique:users',
             'a_role' => 'required',
-            'a_office' => 'required'
             ]);
 
             $f_name=ucfirst($this->f_name);
@@ -156,7 +119,6 @@ class Settings extends Component
                     'email' => $this->email,
                     'username' => $username,
                     'password' => $password,
-                    'office_id' => $this->a_office,
                     'is_password_default'=> true,
                 ]);
 

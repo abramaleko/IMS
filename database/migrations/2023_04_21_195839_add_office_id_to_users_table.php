@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->unsignedBigInteger('office_id');
-            $table->foreign('office_id')->references('id')->on('offices');
+            // $table->unsignedBigInteger('office_id');
+            // $table->foreign('office_id')->references('id')->on('offices');
         });
     }
 
