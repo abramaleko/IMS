@@ -22,9 +22,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'fname',
+        'lname',
         'username',
-        'office_id',
+        'email',
         'password',
         'is_password_default'
     ];
@@ -53,10 +54,10 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function office()
-    {
-        return $this->belongsTo(Offices::class, 'office_id');
-    }
+    // public function office()
+    // {
+    //     return $this->belongsTo(Offices::class, 'office_id');
+    // }
 
     public function profilePhotoUrl()
     {
