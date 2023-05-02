@@ -43,20 +43,19 @@
                              @enderror
                           </div>
                         <div class="mb-4 col-xl-6 col-md-6">
+                        <label class="form-label font-w600">Email<span class="text-danger scale5 ms-2">*</span></label>
+                            <input type="email" wire:model.defer="email" class="mb-2 form-control solid" placeholder="name@domain.com" aria-label="name">
+                            @error('email')
+                            <span class="text-danger fw-bold">{{$message}}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-4 col-xl-6 col-md-6">
                           <label class="form-label font-w600">Phone No<span class="text-danger scale5 ms-2">*</span></label>
                             <input type="tel" wire:model.defer="phone_no" class="mb-2 form-control solid" placeholder="Phone number" aria-label="name">
                             @error('phone_no')
                             <span class="text-danger fw-bold">{{$message}}</span>
                             @enderror
                         </div>
-                        <div class="mb-4 col-xl-6 col-md-6">
-                            <label class="form-label font-w600">Email</label>
-                              <input type="email" wire:model.defer="email" class="mb-2 form-control solid" placeholder="name@domain.com" aria-label="name">
-                              @error('email')
-                              <span class="text-danger fw-bold">{{$message}}</span>
-                              @enderror
-                          </div>
-
                           <div class="mb-4 col-xl-6 col-md-6">
                             <label class="form-label font-w600">Upload Copy Id<span class="text-danger scale5 ms-2">*</span></label>
                             <div class="mb-3 input-group">

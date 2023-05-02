@@ -16,7 +16,7 @@
             <div class="flex-wrap border-0 card-header align-items-start">
                 <div class="col-md-8">
                     <div class="user d-sm-flex d-block pe-md-5 pe-0">
-                        <img src="{{asset('images/user.jpg')}}" alt="investor-image">
+                        <img src="{{ $investor->user->profilePhotoUrl($investor->user->id)}}" alt="investor-image">
                         <div class="ms-sm-3 ms-0 me-md-5 md-0">
                             <h5 class="mb-1 font-w600"><a href="javascript:void(0);">{{$investor->investor_name}}</a></h5>
                             <div class="mb-2 listline-wrapper">

@@ -42,7 +42,7 @@
                         <tbody>
                             @foreach ($investors as $investor)
                             <tr role="row" class="odd">
-                                <td class="sorting_1"><img class="rounded-circle" width="35" src="{{asset('images/profile/small/pic1.jpg')}}" alt=""></td>
+                                <td class="sorting_1"><img class="rounded-circle" width="35" height="35" src="{{ $investor->user->profilePhotoUrl($investor->user->id)}}" alt=""></td>
                                 <td><strong>{{$investor->investor_name}}</strong></td>
                                 <td><a href="javascript:void(0);"><strong>{{$investor->phone_number}}</strong></a></td>
                                 <td>{{$investor->gender}}</td>

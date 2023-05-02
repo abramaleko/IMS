@@ -22,7 +22,8 @@ class InvestorController extends Controller
     public function show()
     {
         return view('investors.show',[
-            'investors' => Investors::orderBy('id','desc')->get()
+            'investors' => Investors::with('user')
+             ->orderBy('id','desc')->get()
         ]);
     }
 
