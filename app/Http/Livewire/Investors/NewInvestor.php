@@ -17,7 +17,7 @@ class NewInvestor extends Component
     public $open2=false,$final=false;
 
     public $investor_name,$dob,$gender="",$residence,$phone_no,$email,$id_copy,$investor_image;
-    public $account_name,$account_number,$bank_name;
+    public $account_name,$account_number,$bank_name,$reward_address,$chain;
     public $next_kin_name,$next_kin_relationship,$next_kin_phone,$next_of_kin_id_copy;
 
     public function render()
@@ -54,6 +54,8 @@ class NewInvestor extends Component
         'account_name' => 'required|string|max:50',
         'account_number' => 'required|string',
         'bank_name' => 'required|string',
+        'reward_address' => 'nullable|string',
+        'chain' => 'nullable|string'
         ]);
 
         //shows the last page
@@ -98,6 +100,8 @@ class NewInvestor extends Component
             $data->account_name=$this->account_name;
             $data->account_number=$this->account_number;
             $data->bank_name=$this->bank_name;
+            $data->reward_address=$this->reward_address;
+            $data->chain=$this->chain;
 
             $data->nxt_kin_name=$this->next_kin_name;
             $data->nxt_kin_relationship=$this->next_kin_relationship;

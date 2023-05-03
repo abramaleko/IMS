@@ -43,6 +43,8 @@
 
                     </div>
                     <div class="col-xl-6 col-md-6">
+                        <p class="mb-2 font-w600 d-flex"><span class="custom-label-2">Reward Address :</span> <span class="font-w400">{{$investor->reward_address ?? '-'}}</span></p>
+                        <p class="mb-2 font-w600 d-flex"><span class="custom-label-2">Chain :</span> <span class="font-w400">{{$investor->chain ?? '-'}}</span></p>
                         <p class="mb-2 font-w600 d-flex"><span class="custom-label-2">Next of Kin Name :</span> <span class="font-w400">{{$investor->nxt_kin_name}}</span></p>
                         <p class="mb-2 font-w600 d-flex"><span class="custom-label-2">Relationship :</span> <span class="font-w400">{{$investor->nxt_kin_relationship}}</span></p>
                         <p class="mb-2 font-w600 d-flex"><span class="custom-label-2">Phone : </span><span class="font-w400">{{$investor->nxt_kin_phone}}</span></p>
