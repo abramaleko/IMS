@@ -611,7 +611,7 @@
                         <a href="{{route('user-profile')}}" class="dropdown-item ai-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>							<span class="ms-2">Profile </span>
 						</a>
-                        
+
                         @can('Manage Settings')
                         <a href="{{route('settings')}}" class="dropdown-item ai-icon ">
                             <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 23.262 24"fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
@@ -663,6 +663,15 @@
                     <li><a href="{{route('contracts.index')}}">View Contracts</a></li>
                     <li><a href="{{route('contract.new')}}">Add Contract</a></li>
                 </ul>
+            </li>
+             @endcan
+
+             @can('Manage Shared Documents')
+             <li class="{{Request::is('admin.shared-docs.index') ? 'mm-active' : ''}}">
+                <a class="" href="{{route('admin.shared-docs.index')}}">
+                    <i class="flaticon-025-dashboard"></i>
+                    <span class="nav-text">Shared Docs</span>
+                </a>
             </li>
              @endcan
 

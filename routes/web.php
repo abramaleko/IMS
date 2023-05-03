@@ -4,6 +4,7 @@ use App\Http\Controllers\ContractsController;
 use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SharedDocsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -69,3 +70,7 @@ Route::get('/settings',[SettingsController::class,'index'])->name('settings');
 Route::get('/settings/{role}/role',[SettingsController::class,'rolePermissions'])->name('settings.role-permissions');
 
 Route::get('/profile',ProfileController::class)->middleware('auth')->name('user-profile');
+
+Route::get('/admin/shared-docs',[SharedDocsController::class,'adminSharedDocs'])->name('admin.shared-docs.index');
+
+Route::get('/admin/upload/shared-docs',[SharedDocsController::class,'uploadSharedDocsPage'])->name('admin.shared-docs.upload');
