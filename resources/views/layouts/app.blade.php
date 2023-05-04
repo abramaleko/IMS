@@ -675,6 +675,15 @@
             </li>
              @endcan
 
+             @can('View Shared Documents')
+             <li class="{{Request::is('shared-docs.index') ? 'mm-active' : ''}}">
+                <a class="" href="{{route('shared-docs.index')}}">
+                    <i class="flaticon-025-dashboard"></i>
+                    <span class="nav-text">Shared Docs</span>
+                </a>
+            </li>
+             @endcan
+
                 </ul>
 				<div class="copyright">
 					<p><strong>{{env('APP_NAME','Demo')}}</strong> © 2021 All Rights Reserved</p>

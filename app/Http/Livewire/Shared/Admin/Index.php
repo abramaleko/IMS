@@ -23,6 +23,8 @@ class Index extends Component
 
         $doc->delete();
 
+        $this->docs=SharedDocs::orderBy('id','desc')->get();
+
         session()->flash('success', 'Successfully deleted document');
     }
 }

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\SharedDocs;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
 
 class SharedDocsController extends Controller
 {
@@ -16,6 +18,15 @@ class SharedDocsController extends Controller
 
     public function adminSharedDocs(){
         return view('sharedDocs.admin-index');
+    }
+
+    public function getSharedDoc(){
+
+        $currentDate=Carbon::now();
+        $docs=SharedDocs::whereDate('valid_untill', '>', Carbon::now())
+        ->orderBy('id','desc')
+        ->get();
+        return view('sharedDocs.index',['docs' => $docs]);
     }
 
     public function uploadSharedDocsPage(){
