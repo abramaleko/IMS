@@ -34,7 +34,7 @@
                             <tr>
                                 <td><strong>{{ $loop->iteration }}</strong></td>
                                 <td>{{ $doc->title }}</td>
-                                <td>{{ $doc->created_at->format('d/m/Y') }}</td>
+                                <td>{{ $doc->created_at->format('Y-m-d') }}</td>
                                 <td>{{ $doc->valid_untill}}</td>
                                 <td>
                                     <div class="d-flex">

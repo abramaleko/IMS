@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Shared\Admin;
 
 use App\Models\SharedDocs;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -33,7 +34,7 @@ class Upload extends Component
         $newDoc=new SharedDocs();
         $newDoc->title=$this->title;
         $newDoc->description=$this->description;
-        $newDoc->valid_untill=$this->valid_untill;
+        $newDoc->valid_untill=Carbon::parse($this->valid_untill)->format('Y-m-d');
         $newDoc->filepath=$filepath;
         $newDoc->save();
 
