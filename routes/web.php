@@ -74,3 +74,7 @@ Route::get('/profile',ProfileController::class)->middleware('auth')->name('user-
 Route::get('/admin/shared-docs',[SharedDocsController::class,'adminSharedDocs'])->name('admin.shared-docs.index');
 
 Route::get('/admin/upload/shared-docs',[SharedDocsController::class,'uploadSharedDocsPage'])->name('admin.shared-docs.upload');
+
+Route::get('/shared-doc/view/{doc}',[SharedDocsController::class,'viewDoc'])->name('shared-document.view');
+
+Route::get('/get/shared-doc/download/{doc}',[SharedDocsController::class,'downloadDoc'])->name('shared-document.download');
