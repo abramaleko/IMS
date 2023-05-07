@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+
+    //defines the middelware
+     public function __construct()
+     {
+        $this->middleware(['auth','verified']);
+     }
+
+
     /**
      * Handle the incoming request.
      *
