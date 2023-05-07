@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Auth\Events\Registered;
+
 
 class Settings extends Component
 {
@@ -123,6 +125,9 @@ class Settings extends Component
                 ]);
 
                 $user->assignRole($this->a_role);
+
+                //dispatches this event which will send the user an email with their login credentials
+                event(new Registered($user));
 
                 //update users
                 $this->users=User::all();

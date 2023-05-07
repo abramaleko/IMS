@@ -6,6 +6,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SharedDocsController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +28,35 @@ Route::redirect('/','/login');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth','verified'])->name('dashboard');
+
+//route for showing email verification notice
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+
+// defines a route  that will handle requests generated when the user clicks
+// the email verification link that was emailed to them
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+
+//routes for resending email verification
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 
 require __DIR__.'/auth.php';
 
 
-Route::prefix('investors')->middleware('auth')->group(function () {
+Route::prefix('investors')->middleware(['auth','verified'])->group(function () {
 
     Route::get('/new',[InvestorController::class,'index'])->name('investors.index');
 
@@ -47,7 +72,7 @@ Route::prefix('investors')->middleware('auth')->group(function () {
 });
 
 
-Route::prefix('contracts')->middleware('auth')->group(function(){
+Route::prefix('contracts')->middleware(['auth','verified'])->group(function(){
 
     Route::get('/all',[ContractsController::class,'index'])->name('contracts.index');
 

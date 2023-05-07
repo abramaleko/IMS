@@ -4,10 +4,10 @@ namespace App\Http\Livewire\Investors;
 
 use App\Models\Investors;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-
 
 class NewInvestor extends Component
 {
@@ -137,6 +137,9 @@ class NewInvestor extends Component
               ]);
 
               $user->assignRole('Investor');
+
+              event(new Registered($user));
+
 
             return redirect()->route('investors.show')->with('success','Successfully registered investor');
 
