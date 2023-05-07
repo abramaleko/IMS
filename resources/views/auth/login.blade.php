@@ -51,8 +51,8 @@
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="mb-3">
-                                            <label class="mb-1"><strong>Username</strong></label>
-                                            <input type="text" class="form-control" name="username" required value="{{old('usernmae')}}">
+                                            <label class="mb-1"><strong>Enter email</strong></label>
+                                            <input type="email" class="form-control" name="email" required value="{{old('email')}}">
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-1"><strong>Password</strong></label>
