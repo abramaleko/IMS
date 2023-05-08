@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\ChangePasswordController;
+use App\Http\Controllers\Auth\TwoFactorController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -58,5 +59,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/change-password',[ChangePasswordController::class,'index'])->name('change-password');
 
     Route::post('/change-password',[ChangePasswordController::class,'changePassword'])->name('store-new-password');
+
+    //two factor routes
+    Route::get('verify/resend',[TwoFactorController::class,'resend'])->name('verify.resend');
+    Route::resource('verify', TwoFactorController::class)->only(['index', 'store']);
 
 });

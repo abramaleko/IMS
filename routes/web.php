@@ -28,13 +28,13 @@ Route::redirect('/','/login');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth','verified'])->name('dashboard');
+})->middleware(['auth','verified','twofactor'])->name('dashboard');
 
 
 require __DIR__.'/auth.php';
 
 
-Route::prefix('investors')->middleware(['auth','verified'])->group(function () {
+Route::prefix('investors')->middleware(['auth','verified','twofactor'])->group(function () {
 
     Route::get('/new',[InvestorController::class,'index'])->name('investors.index');
 
@@ -50,7 +50,7 @@ Route::prefix('investors')->middleware(['auth','verified'])->group(function () {
 });
 
 
-Route::prefix('contracts')->middleware(['auth','verified'])->group(function(){
+Route::prefix('contracts')->middleware(['auth','verified','twofactor'])->group(function(){
 
     Route::get('/all',[ContractsController::class,'index'])->name('contracts.index');
 

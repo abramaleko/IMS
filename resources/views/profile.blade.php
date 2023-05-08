@@ -26,6 +26,8 @@
 
 @livewire('profile.update-password')
 
+@livewire('profile.two-factor')
+
 
 @endsection
 
