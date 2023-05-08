@@ -32,6 +32,19 @@ IMS is a web based systems which aims to facilitate management of Investors whic
   title="Optional title"
   style="display: inline-block;  margin-right: 1rem; max-width: 300px">
 </div>
+<div style="display:flex; margin-top:1.5rem;">
+ <img
+  src="public/images/screenshots/IMS-6.png"
+  alt="Alt text"
+  title="Optional title"
+  style="display: inline-block;  margin-right: 1rem; max-width: 300px">
+
+  <img
+  src="public/images/screenshots/IMS-5.png"
+  alt="Alt text"
+  title="Optional title"
+  style="display: inline-block;  margin-right: 1rem; max-width: 300px">
+</div>
 
 ## Requirements
 - Composer installed
@@ -43,81 +56,54 @@ IMS is a web based systems which aims to facilitate management of Investors whic
 - Rename .env-example to .env and configure your enviroment settings
 - Run the migrations
 
-If you prefer to start up the app using pre-data you can run the seeder command which will populate your tables
+Run the seeder below which will create a super administrator for you application you can later customize this in the user profile
 
 ```
 php artisan db:seed
 ```
 Then you can login the following credentials
-- Username: S.Admin
+- Username: admin@domain.com
 - Password: Admin@2023
 
 ## HOW THE SYSTEMS WORKS
 
-Users will be located depending on which branch are designated to and each user will have diffrent permissions which will be assigned by Super Administrator.
-
 In general all users are categorized as follows
-- Normal Users
-- Administrators
-- Super Administrators
+- Super Administrator
+- Staff
+- Investor
 
-### Normal Users
+By default the app uses email verification for registered so you need to set your mail configurations in .env file
+
+Users can 
+- Update their user profile details (name,email,password)
+- Email password resets
+- Can upload profile picture also you need to create a symlink of the storage to public directory which you can do with command
+
+```
+php artisan storage:link
+```
+- Option to enable two factor authentication
+- Access shared documents uploaded by the admin
+
+
+## Super administrators
+- Register investors and create their user accounts
+- Create staff and assign them with permissions
+- Upload investor contracts
+- Can upload default shared documents which will be accessible to investors
+
+By default staff users will have a password of 'Staff@2023' and investors a password of  'Investor@2023' and you can change this in the app file in the config directory
+
+All created users will be prompted to change their default password on their first log in attempt
+
+### Staff
 This users have permissions to
-- Add Investors Profile ✅
-- Edit Investors Profile ✅
+- Add Investors Profile 
+- Edit Investors Profile 
 
-### Administrators
-This users have permissions to
-- Add Investors Profile ✅
-- Edit Investors Profile ✅
-- Add New Contracts (Each branch can add a new contract depending on which contract amount is allowed to) ✅
-- Edit Contract details (Which previously created by its branch) ✅
-- Access to Investors Payment List ❌
-- Access to Top Investors,Investors Flow Chart ❌
-
-### Super Administators
-This users have all the administrators priviledges with addition of
-- Create staff users which will have a default password of 'Staff@2023' ✅
-- Have read,write access to all contracts not bounded by branch ✅
-- Approve password resets
-- Logs 
-
-
-## System Phases
-IMS is divided into three phases
-
-1.  Investor Profile
-2. Contracts
-3.  Admin Dashboard , Reports
-
-### Investor Profile
-This phase will have all the investors basic details such as
-
-- Full Name
-- Residence Area
-- Phone Number
-- Email
-- DOB
-- Investor image
-- Copy of ID (Gorverment Issued Id)
-- Bank Details
-   - Account Name
-   - Account Number
-   - Bank Name
-- Next of Kin
-  - Name
-  - Relationship
-  - Mobile No
-  - Copy of ID (Gorvement Issued Id)
-
-### Contracts
-This will store the contract details associated with any investor
-- Name of Investor
-- Amount Invested
-- Project invested on
-- Contract start date
-- Scanned Payment slips
-- Scanned Contract Document
-
+### Investors
+- View their investor profile
+- View their contracts
+- Access the shared documents
 ### Have Fun Working with IMS
 
