@@ -725,7 +725,7 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="#">Mr Kuku Systems</a> 2021</p>
+                <p>Copyright © Designed &amp; Developed by <a href="#">Abraham Maleko</a> 2021</p>
             </div>
         </div>
         <!--**********************************
