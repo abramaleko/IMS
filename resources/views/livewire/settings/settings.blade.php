@@ -86,7 +86,7 @@
           <div class="col-xl-6">
             <div class="card" style="max-height: 25rem;">
                 <div class="card-header">
-                    <h4 class="card-title">Mr.Kuku Projects</h4>
+                    <h4 class="card-title">Projects</h4>
                     <div>
                         <button type="button" class="mb-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#newProjectModal">
                             <i class="fas fa-plus me-2"></i>
