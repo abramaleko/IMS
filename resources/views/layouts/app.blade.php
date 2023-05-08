@@ -576,7 +576,18 @@
                                 @yield('page-name')
                             </div>
                         </div>
+                        <ul class="navbar-nav header-right">
 
+							<li class="nav-item notification_dropdown">
+                                <a class="nav-link" href="#"
+                                  onclick="toggleDarkmode()">
+                                  <svg style="width:30px;height:30px" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M12 2A10 10 0 0 0 2 12A10 10 0 0 0 12 22A10 10 0 0 0 22 12A10 10 0 0 0 12 2M12 4A8 8 0 0 1 20 12A8 8 0 0 1 12 20V4Z"></path>
+                                </svg>
+                                </a>
+
+							</li>
+                        </ul>
                     </div>
 				</nav>
 			</div>
@@ -642,7 +653,7 @@
                 @can('Manage Investors')
                 <li class="{{Request::is(['investors.index','investors.show','investor.details']) ? 'mm-active' : ''}}">
                     <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <img src="{{asset('images/users-solid.svg')}}" alt="investors" style="width:1.5rem; margin-right:1rem;">
+                        <i class="flaticon-021-command"></i>
                     <span class="nav-text">Investors</span>
                 </a>
                 <ul aria-expanded="false" class="left mm-collapse"style="height:14px;">
@@ -669,7 +680,7 @@
              @can('Manage Shared Documents')
              <li class="{{Request::is('admin.shared-docs.index') ? 'mm-active' : ''}}">
                 <a class="" href="{{route('admin.shared-docs.index')}}">
-                    <i class="flaticon-025-dashboard"></i>
+                    <i class="flaticon-017-clipboard"></i>
                     <span class="nav-text">Shared Docs</span>
                 </a>
             </li>
@@ -678,7 +689,7 @@
              @can('View Shared Documents')
              <li class="{{Request::is('shared-docs.index') ? 'mm-active' : ''}}">
                 <a class="" href="{{route('shared-docs.index')}}">
-                    <i class="flaticon-025-dashboard"></i>
+                    <i class="flaticon-017-clipboard"></i>
                     <span class="nav-text">Shared Docs</span>
                 </a>
             </li>
@@ -744,6 +755,27 @@
     <script src="{{asset('vendor/jquery-nice-select/js/jquery.nice-select.min.js')}}"></script>
     <script src="{{asset('js/custom.min.js')}}"></script>
     <script src="{{asset('js/dlabnav-init.js')}}"></script>
+    <script>
+     var darkmode=localStorage.getItem("darkmode");
+
+        jQuery(document).ready(function(){
+			setTimeout(function(){
+				dlabSettingsOptions.version = darkmode == 'true' ? 'dark' : 'light';
+				new dlabSettings(dlabSettingsOptions);
+			},1500)
+		});
+
+       function toggleDarkmode(){
+        if(darkmode == 'false' || darkmode == null){
+            localStorage.setItem("darkmode", true);
+            location.reload();
+        }else{
+            localStorage.setItem("darkmode", false);
+            location.reload();
+        }
+        }
+
+    </script>
 
     @yield('scripts')
 
