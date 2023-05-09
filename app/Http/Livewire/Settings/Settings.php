@@ -128,6 +128,8 @@ class Settings extends Component
                 //dispatches this event which will send the user an email with their login credentials
                 event(new Registered($user));
 
+                $this->reset(['f_name','l_name','email']);
+
                 //update users
                 $this->users=User::all();
 
