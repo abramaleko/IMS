@@ -18,7 +18,7 @@ class Assets extends Component
         'new_asset.asset_name' => 'required|string',
         'new_asset.asset_type' => 'required|string',
         'new_asset.reward_level' => 'required|string',
-        'new_asset.payout_amount' => 'required|integer',
+        'new_asset.payout_amount' => 'required|numeric',
     ];
 
     public function render()
@@ -37,6 +37,8 @@ class Assets extends Component
         $this->new_asset->save();
 
         session()->flash('AssetCreate', 'Successfully added a new asset');
+
+        $this->new_asset = new ModelsAssets();
 
         $this->assets=ModelsAssets::all();
 
