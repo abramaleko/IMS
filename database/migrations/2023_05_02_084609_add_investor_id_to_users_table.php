@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
+            $table->foreignId('investor_id')
+            ->after('username')
+            ->nullable()
+            ->constrained();
         });
     }
 
