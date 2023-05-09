@@ -193,7 +193,7 @@
                                <td>{{$asset->asset_name}}</td>
                                <td>{{$asset->asset_type}}</td>
                                <td>{{$asset->reward_level}}</td>
-                               <td>{{number_format($asset->payout_amount)}}</td>
+                               <td>{{$asset->payout_amount}}</td>
                                 <td>
                                     <div class="d-flex">
                                         <button @click="

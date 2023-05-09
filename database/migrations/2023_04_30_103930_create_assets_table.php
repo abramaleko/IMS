@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('asset_type');
             $table->string('asset_name');
             $table->string('reward_level');
-            $table->integer('payout_amount');
+            $table->decimal('payout_amount', 10, 2);
             $table->timestamps();
         });
     }
