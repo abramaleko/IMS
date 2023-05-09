@@ -219,11 +219,11 @@
         <div class="col-xl-12">
             <div class="card" style="max-height: 25rem;">
                <div class="card-header">
-                   <h4 class="card-title">{{env('APP_NAME')}} Users</h4>
+                   <h4 class="card-title">{{env('APP_NAME')}} Staff</h4>
                    <div>
                        <button type="button" class="mb-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#newUserModal">
                            <i class="fas fa-plus me-2"></i>
-                           Add User
+                           Add Staff
                        </button>
                        <div class="modal fade" id="newUserModal"  aria-hidden="true" wire:ignore.self>
                         <div class="modal-dialog" role="document">
@@ -269,21 +269,6 @@
                                             @enderror
                                            </div>
                                     </div>
-                                    <div style="margin-top: 1.5rem;">
-                                        <label class="form-label">Role assigned</label>
-                                        <select class="form-control"  wire:model="a_role">
-                                        <option value="" selected disabled>Please select</option>
-                                        @foreach ($roles as $role)
-                                        <option value="{{$role->name}}">{{$role->name}}</option>
-                                        @endforeach
-
-                                    </select>
-                                    @error('a_role')
-                                    <div class="mt-2">
-                                        <span class="text-danger fw-bold">{{$message}}</span>
-                                    </div>
-                                    @enderror
-                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
@@ -313,6 +298,16 @@
               <div class="alert alert-success alert-dismissible fade show">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
                 <strong>Success!</strong> {{ session('deleteUser') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                </button>
+            </div>
+              @endif
+
+
+              @if (session()->has('CreatedUser'))
+              <div class="alert alert-success alert-dismissible fade show">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                <strong>Success!</strong> {{ session('CreatedUser') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
                 </button>
             </div>

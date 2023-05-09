@@ -16,7 +16,7 @@ class Settings extends Component
 {
    public $roles,$role_name;
    public $projects,$project_name,$selectedProject;
-   public $users,$f_name,$l_name,$email,$a_role="";
+   public $users,$f_name,$l_name,$email;
     public function render()
     {
         return view('livewire.settings.settings');
@@ -105,7 +105,6 @@ class Settings extends Component
             'f_name' => 'required|string|max:50',
             'l_name' => 'required|string|max:50',
             'email' => 'required|unique:users',
-            'a_role' => 'required',
             ]);
 
             $f_name=ucfirst($this->f_name);
@@ -124,7 +123,7 @@ class Settings extends Component
                     'is_password_default'=> true,
                 ]);
 
-                $user->assignRole($this->a_role);
+                $user->assignRole('Staff');
 
                 //dispatches this event which will send the user an email with their login credentials
                 event(new Registered($user));
@@ -132,6 +131,7 @@ class Settings extends Component
                 //update users
                 $this->users=User::all();
 
+                session()->flash('CreatedUser', 'Successfully created user and sent email with credentials to registered staff');
 
                 $this->dispatchBrowserEvent('closeUserModal');
      }
