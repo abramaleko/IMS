@@ -28,7 +28,7 @@ class Contracts extends Model
     {
         return $this->belongsTo(User::class,'modified_by');
     }
-    public function asset(){
-        return $this->belongsTo(Assets::class,'asset_id');
+    public function assets(){
+        return $this->hasMany(ContractAssets::class,'contract_id');
     }
 }
