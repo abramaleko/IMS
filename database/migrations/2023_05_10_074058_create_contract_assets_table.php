@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('contracts', function (Blueprint $table) {
-            //
-            $table->string('asset_address')
-            ->after('amount')
-            ->nullable();
-            $table->foreignId('asset_id')
-            ->after('project_id')
-            ->constrained();
+        Schema::create('contract_assets', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('asset_id')->constrained();
+            $table->string('asset_address')->unique();
+            $table->foreignId('contract_id')->constrained();
+            $table->timestamps();
         });
     }
 
@@ -31,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('contracts', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('contract_assets');
     }
 };

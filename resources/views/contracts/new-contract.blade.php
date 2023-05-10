@@ -47,5 +47,8 @@
 }
 dselect(document.querySelector('#investor_name'), config)
 dselect(document.querySelector('#project_name'), config)
+window.addEventListener('closenewContractAssettModal', event => {
+      $("#newContractAsset").modal('toggle');
+})
   </script>
 @endsection
