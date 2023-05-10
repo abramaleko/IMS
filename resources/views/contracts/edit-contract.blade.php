@@ -28,4 +28,9 @@
 
 @section('scripts')
   @livewireScripts
+  <script>
+    window.addEventListener('closenewContractAssettModal', event => {
+      $("#newContractAsset").modal('toggle');
+})
+  </script>
 @endsection
