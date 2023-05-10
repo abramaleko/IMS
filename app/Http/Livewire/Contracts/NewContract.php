@@ -18,7 +18,7 @@ class NewContract extends Component
     use WithFileUploads;
 
     public $investors,$projects;
-    public $investor_id="",$project_id="",$amount,$roi_period,$start_date,$contract_duration,$payment_slips=[],$contracts=[],$additional_description,$additional_attachments=[],$asset_address,$asset='';
+    public $investor_id="",$project="",$amount,$roi_period,$start_date,$contract_duration,$payment_slips=[],$contracts=[],$additional_description,$additional_attachments=[],$asset_address,$asset='';
     public $assets;
 
     public function render()
@@ -35,7 +35,7 @@ class NewContract extends Component
 
     protected $rules=[
         'investor_id'=> 'required',
-        'project_id'=> 'required',
+        'project'=> 'required',
         'amount'=> 'required',
         'roi_period' => 'required|integer',
         'start_date' => 'required|date',
@@ -52,16 +52,18 @@ class NewContract extends Component
 
     public function resetForm(){
         $this->reset([
-            'investor_id','project_id','amount','roi_period','start_date','contract_duration','contracts','payment_slips','additional_description','additional_attachments'
+            'investor_id','project','amount','roi_period','start_date','contract_duration','contracts','payment_slips','additional_description','additional_attachments'
         ]);
     }
 
 
     public function uploadContract(){
 
+        $this->validate();
+
         $contract_info=new Contracts();
         $contract_info->investor_id=$this->investor_id;
-        $contract_info->project_id=$this->project_id;
+        $contract_info->project_id=$this->project;
         $contract_info->uploader_id=Auth::user()->id;
         $contract_info->amount=$this->amount;
         $contract_info->start_date=$this->start_date;

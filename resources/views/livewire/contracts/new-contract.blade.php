@@ -15,16 +15,22 @@
                                 <option value="{{$investor->id}}">{{$investor->investor_name}}</option>
                                 @endforeach
                             </select>
+                            @error('investor_id')
+                            <span class="text-danger fw-bold d-block">{{$message}}</span>
+                          @enderror
                         </div>
 
                         <div class="mb-4 col-xl-6 col-md-6">
                             <label class="form-label font-w600">Project Name:<span class="text-danger scale5 ms-2">*</span></label>
-                            <select wire:model.defer="project_id" class="form-select" id="project_name">
+                            <select wire:model.defer="project" class="form-select" id="project_name">
                                 <option value="" selected disabled>Choose ..</option>
                                 @foreach ($projects as $project)
                                 <option value="{{$project->id}}">{{$project->name}}</option>
                                 @endforeach
                             </select>
+                            @error('project')
+                            <span class="text-danger fw-bold d-block">{{$message}}</span>
+                          @enderror
                         </div>
                         <div class="mb-4 col-xl-6 col-md-6">
                             <label class="form-label font-w600">Amount (Tshs)<span class="text-danger scale5 ms-2">*</span></label>
