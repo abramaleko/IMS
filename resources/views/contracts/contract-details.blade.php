@@ -78,8 +78,6 @@
                                         <div class="ms-4">
                                             <p class="mb-3 font-w500"><span class="custom-label">Project Name :</span><span class="font-w400"> {{$contract->project->name}} </span></p>
                                             <p class="mb-3 font-w500"><span class="custom-label">Amount Invested($) :</span><span class="font-w400">{{number_format($contract->amount)}}</span></p>
-                                            <p class="mb-3 font-w500"><span class="custom-label">Asset :</span><span class="font-w400">{{$contract->asset->asset_name}}</span></p>
-                                            <p class="mb-3 font-w500"><span class="custom-label">Asset address :</span><span class="font-w400">{{$contract->asset_address ?? ''}}</span></p>
                                             <p class="mb-3 font-w500"><span class="custom-label"> Start Date :</span><span class="font-w400"> {{$contract->start_date}}</span></p>
                                             <p class="mb-3 font-w500"><span class="custom-label"> End Date :</span><span class="font-w400">{{$contract->end_date}}</span></p>
                                             <p class="mb-3 font-w500"><span class="custom-label">ROI Period :</span><span class="font-w400">{{$contract->roi_period}} Months</span></p>
@@ -93,6 +91,16 @@
                                             <p class="mb-3 font-w500"><span class="custom-label">Contract :</span><span class="font-w400"> <a href="{{route('contract.download',[$contract->id,'contract_documents'])}}" class="badge badge-primary">Download</a></span></p>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <h4 class="mb-3 fs-20">Contract Assets</h4>
+                                    @foreach ($contract->assets as $asset)
+                                    <span class="mb-1 d-block"><i class="fas fa-circle me-2"></i>
+                                        Asset Name: <strong>{{$asset->assetInfo->asset_name}},</strong>
+                                        Asset Address: <strong>{{$asset->asset_address}},</strong>
+                                    </span>
+                                    @endforeach
+
                                 </div>
                                 @if ($contract->additional_description || $contract->termination_description)
                                 <hr>
