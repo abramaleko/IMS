@@ -52,6 +52,9 @@ window.addEventListener('closeCreateAssetModal', event => {
 window.addEventListener('closeEditAssetModal', event => {
       $("#editAsset").modal('toggle');
 })
+window.addEventListener('communityClaimModal', event => {
+      $("#community-claim").modal('toggle');
+})
 
 </script>
 @endsection

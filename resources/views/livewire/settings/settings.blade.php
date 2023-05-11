@@ -1,6 +1,66 @@
 <div>
             {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
     <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Community Claim Period</h4>
+                </div>
+                <div class="card-body">
+                    @if (session()->has('updatedCommunityClaimPeriod'))
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                        <strong>Success!</strong> {{ session('updatedCommunityClaimPeriod') }}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                      </button>
+                  </div>
+                    @endif
+                 <h5>
+                    @if ($community_claim_period)
+                      Community Claim Period has been activated
+                    @else
+                    Community Claim Period is disabled
+                    @endif
+                </h5>
+                </div>
+                <div class="card-footer d-sm-flex justify-content-between align-items-center">
+                    <div>
+                        <button type="button" class="mb-2 btn {{$community_claim_period ? 'btn-secondary' : 'btn-primary'}}"
+                         data-bs-toggle="modal" data-bs-target="#community-claim">
+                            @if ($community_claim_period)
+                            Disable
+                          @else
+                          Enable
+                          @endif
+                        </button>
+                        <div class="modal fade bd-example-modal-sm" id="community-claim" tabindex="-1" role="dialog" aria-hidden="true" wire:ignore.self>
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Confirm</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @if ($community_claim_period)
+                                           Are you sure you want to activate Community Claim Period ?
+                                            @else
+                                            Are you sure you want to disable Community Claim Period ?
+                                            @endif
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" wire:click='updateCommunityClaimStatus'  class="btn btn-primary">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <!-- roles-->
         <div class="col-xl-6">
              <div class="card" style="max-height: 25rem;">

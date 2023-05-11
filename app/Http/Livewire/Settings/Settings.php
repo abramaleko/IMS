@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Settings;
 
+use App\Models\CommunityClaimPeriod;
 use App\Models\Offices;
 use App\Models\Projects;
 use App\Models\User;
@@ -17,6 +18,7 @@ class Settings extends Component
    public $roles,$role_name;
    public $projects,$project_name,$selectedProject;
    public $users,$f_name,$l_name,$email;
+   public $community_claim_period;
     public function render()
     {
         return view('livewire.settings.settings');
@@ -27,6 +29,22 @@ class Settings extends Component
         $this->roles=Role::all();
         $this->projects=Projects::all();
         $this->users=User::all();
+        $this->community_claim_period=CommunityClaimPeriod::first()->value;
+    }
+
+    public function updateCommunityClaimStatus(){
+        $this->community_claim_period= ! $this->community_claim_period;
+
+        $communityClaim=CommunityClaimPeriod::first();
+        $communityClaim->value=$this->community_claim_period;
+        $communityClaim->save();
+
+        if ($this->community_claim_period)
+            session()->flash('updatedCommunityClaimPeriod', 'Successfully enabled Community Claim Period');
+        else
+        session()->flash('updatedCommunityClaimPeriod', 'Disabled Community Claim Period');
+
+        $this->dispatchBrowserEvent('communityClaimModal');
 
     }
 
