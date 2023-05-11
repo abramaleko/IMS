@@ -8,12 +8,19 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="mb-4 col-xl-6 col-md-6">
-                          <label class="form-label font-w600">Investor Name<span class="text-danger scale5 ms-2">*</span></label>
-                            <input type="text" wire:model.defer="investor_name"   class="mb-2 form-control solid" placeholder="Full Name" aria-label="name">
-                            @error('investor_name')
+                          <label class="form-label font-w600">First Name<span class="text-danger scale5 ms-2">*</span></label>
+                            <input type="text" wire:model.defer="first_name"   class="mb-2 form-control solid" placeholder="First Name" aria-label="name">
+                            @error('first_name')
                               <span class="text-danger fw-bold">{{$message}}</span>
                             @enderror
                         </div>
+                        <div class="mb-4 col-xl-6 col-md-6">
+                            <label class="form-label font-w600">Last Name<span class="text-danger scale5 ms-2">*</span></label>
+                              <input type="text" wire:model.defer="last_name"   class="mb-2 form-control solid" placeholder="Last Name" aria-label="name">
+                              @error('last_name')
+                                <span class="text-danger fw-bold">{{$message}}</span>
+                              @enderror
+                          </div>
                         <div class="mb-4 col-xl-6 col-md-6">
                             <label class="form-label font-w600">Date of Birth (DOB) <span class="text-danger scale5 ms-2">*</span></label>
                             <div class="input-group">

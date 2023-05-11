@@ -16,7 +16,7 @@ class NewInvestor extends Component
     //togglers
     public $open2=false,$final=false;
 
-    public $investor_name,$dob,$gender="",$residence,$phone_no,$email,$id_copy,$investor_image;
+    public $first_name,$last_name,$dob,$gender="",$residence,$phone_no,$email,$id_copy,$investor_image;
     public $account_name,$account_number,$bank_name,$reward_address,$chain;
     public $next_kin_name,$next_kin_relationship,$next_kin_phone,$next_of_kin_id_copy;
 
@@ -29,7 +29,8 @@ class NewInvestor extends Component
     {
         //validates the first page
         $this->validate([
-            'investor_name' => 'required|string|max:50',
+            'first_name' => 'required|string|max:50',
+            'last_name' => 'required|string|max:50',
             'dob' => 'required|date',
             'gender' => 'required',
             'residence' => 'required',
@@ -76,7 +77,7 @@ class NewInvestor extends Component
             //inserts the data
 
             $data= new Investors();
-            $data->investor_name=$this->investor_name;
+            $data->investor_name=$this->first_name.' '.$this->last_name;
             $data->residence_area=$this->residence;
             $data->phone_number=$this->phone_no;
             $data->email=$this->email;
@@ -116,10 +117,8 @@ class NewInvestor extends Component
             $data->save();
 
               //create a new user with a role of investor
-              $fullname = $this->investor_name;
-              $name_parts = explode(' ', $fullname);
-              $f_name = $name_parts[0];
-              $l_name = $name_parts[1];
+              $f_name = $this->first_name;
+              $l_name = $this->last_name;
 
               //username innitals f.lastname
               $username=substr($f_name,0,1).'.'.$l_name;
