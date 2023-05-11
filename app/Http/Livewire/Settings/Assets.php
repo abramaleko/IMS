@@ -18,7 +18,7 @@ class Assets extends Component
         'new_asset.asset_name' => 'required|string',
         'new_asset.asset_type' => 'required|string',
         'new_asset.reward_level' => 'required|string',
-        'new_asset.payout_amount' => 'required|numeric',
+        'new_asset.payout_amount' => 'required',
     ];
 
     public function render()
@@ -62,7 +62,7 @@ class Assets extends Component
             'selectedAsset.asset_name' => 'required|string',
             'selectedAsset.asset_type' => 'required|string',
             'selectedAsset.reward_level' => 'required|string',
-            'selectedAsset.payout_amount' => 'required|numeric',
+            'selectedAsset.payout_amount' => 'required',
         ]);
 
 
