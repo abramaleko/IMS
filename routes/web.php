@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommunityClaimController;
 use App\Http\Controllers\ContractsController;
 use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\ProfileController;
@@ -83,3 +84,5 @@ Route::get('/admin/upload/shared-docs',[SharedDocsController::class,'uploadShare
 Route::get('/shared-doc/view/{doc}',[SharedDocsController::class,'viewDoc'])->name('shared-document.view');
 
 Route::get('/get/shared-doc/download/{doc}',[SharedDocsController::class,'downloadDoc'])->name('shared-document.download');
+
+Route::get('/community-claim-reward',CommunityClaimController::class)->name('claim.community-reward');

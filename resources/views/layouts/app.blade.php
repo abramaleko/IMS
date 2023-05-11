@@ -694,6 +694,16 @@
                 </a>
             </li>
              @endcan
+             @can('View Community Claim Page')
+             @if ($community_claim_period)
+                <li class="{{Request::is('claim.community-reward') ? 'mm-active' : ''}}">
+                    <a class="" href="{{route('claim.community-reward')}}">
+                        <span class="nav-text">Claim Community Reward</span>
+                    </a>
+                </li>
+             @endif
+             @endcan
+
 
                 </ul>
 				<div class="copyright">

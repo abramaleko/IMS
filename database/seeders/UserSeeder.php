@@ -63,6 +63,7 @@ class UserSeeder extends Seeder
             'View Contracts',
             'View Investor Profile',
             'View Shared Documents',
+            'View Community Claim Page',
         ];
         $permissions = [];
         foreach ($permissionNames as $name) {
