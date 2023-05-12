@@ -35,7 +35,7 @@ class NewInvestor extends Component
             'gender' => 'required',
             'residence' => 'required',
             'phone_no' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'id_copy'  => 'required|mimes:png,jpeg,jpg,pdf|max:4096',
             'investor_image'  => 'nullable|image|max:4096',
         ],
@@ -71,7 +71,6 @@ class NewInvestor extends Component
             'next_kin_relationship' => 'required|string',
             'next_kin_phone' => 'required|string',
             'next_of_kin_id_copy'  => 'nullable|mimes:png,jpeg,jpg,pdf|max:4096',
-
             ]);
 
             //inserts the data
