@@ -30,7 +30,12 @@ class AuthServiceProvider extends ServiceProvider
 
         //
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
-            $password=config('app.investor_password');
+            if ($notifiable->hasRole('Staff')) {
+                $password=config('app.staff_password');
+            }
+            if ($notifiable->hasRole('Investor')) {
+                $password=config('app.investor_password');
+            }
             return (new MailMessage)
                 ->subject('Verify Email Address')
                 ->line('Hi, your email address was used to create an account with us you can access your account using this email address and password of '.$password)
