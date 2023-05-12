@@ -10,8 +10,8 @@ class ProfileController extends Controller
     //defines the middelware
      public function __construct()
      {
-        $this->middleware(['auth','verified']);
-     }
+        $this->middleware(['auth','verified','twofactor','change-password']);
+    }
 
 
     /**

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class CommunityClaimController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','verified','twofactor','change-password']);
+    }
     /**
      * Handle the incoming request.
      *
