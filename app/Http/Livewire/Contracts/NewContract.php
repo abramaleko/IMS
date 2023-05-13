@@ -31,7 +31,7 @@ class NewContract extends Component
     public function mount()
     {
         $this->investors=Investors::all();
-        $this->projects=Projects::all();
+        $this->projects=Projects::where('status',true)->get();
         $this->assets=Assets::all();
     }
 
