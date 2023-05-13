@@ -21,7 +21,7 @@ class Create extends Component
     }
 
     public function mount(){
-      $this->projects=Projects::all();
+        $this->projects=Projects::where('status',true)->get();
     }
 
     public function validateForm(){
