@@ -29,7 +29,8 @@ class UserSeeder extends Seeder
             'Manage Investors',
             'Manage Settings',
             'Manage Contracts',
-            'Manage Shared Documents'
+            'Manage Shared Documents',
+            'Manage Actuals',
         ];
 
         //create permissions for the app
