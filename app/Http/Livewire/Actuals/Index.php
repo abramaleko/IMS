@@ -16,4 +16,13 @@ class Index extends Component
     public function mount(){
        $this->actuals=Actuals::orderBy('id','desc')->get();
     }
+
+    public function delete(Actuals $actuals){
+        $actuals->delete();
+
+        $this->actuals=Actuals::orderBy('id','desc')->get();
+
+        session()->flash('success', 'Successfully deleted asset');
+
+    }
 }
