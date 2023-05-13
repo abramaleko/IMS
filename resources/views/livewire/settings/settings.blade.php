@@ -207,6 +207,16 @@
                                             </div>
                                             @enderror
                                         </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label" id="project-status">Project Status</label>
+                                            <select class="form-control" wire:model="selectedProject.status"id="project-status">
+                                                <option value="1">Active</option>
+                                                <option value="0">Not Active</option>
+                                            </select>
+
+                                        </div>
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
@@ -236,6 +246,7 @@
                                 <tr>
                                     <th style="width:80px;"><strong>#</strong></th>
                                     <th><strong>Project Name</strong></th>
+                                    <th><strong>Status</strong></th>
 
                                     <th></th>
                                 </tr>
@@ -245,6 +256,7 @@
                               <tr>
                                 <td><strong>{{$loop->iteration}}</strong></td>
                                 <td>{{$project->name}}</td>
+                                <td>{{$project->status ? 'Active' : 'Not Active'}}</td>
                                 <td>
                                     <div class="d-flex">
                                         <button @click="

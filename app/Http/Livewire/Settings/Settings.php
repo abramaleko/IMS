@@ -16,7 +16,7 @@ use Illuminate\Auth\Events\Registered;
 class Settings extends Component
 {
    public $roles,$role_name;
-   public $projects,$project_name,$selectedProject;
+   public $projects,$project_name,$selectedProject,$project_status;
    public $users,$f_name,$l_name,$email;
    public $community_claim_period;
     public function render()
@@ -100,6 +100,7 @@ class Settings extends Component
 
         $project=Projects::find($this->selectedProject['id']);
         $project->name=$this->selectedProject['name'];
+        $project->status=$this->selectedProject['status'];
         $project->save();
 
         $this->projects=Projects::all();
