@@ -704,6 +704,14 @@
              @endif
              @endcan
 
+             @can('Manage Actuals')
+             <li class="{{Request::is(['actuals.index','actuals.create','actuals.show','actuals.edit','actuals.delete']) ? 'mm-active' : ''}}">
+                <a class="" href="{{route('actuals.index')}}">
+                    <i class="flaticon-381-funnel"></i>
+                    <span class="nav-text">Actuals</span>
+                </a>
+            </li>
+             @endcan
 
                 </ul>
 				<div class="copyright">
