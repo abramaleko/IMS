@@ -56,7 +56,7 @@
                                 <td  class="text-center">{{ $actual->created_at->format('Y-m-d') }}</td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="{{route('shared-document.view',$actual->id)}}"class="me-3 btn-xs sharp btn-secondary light">
+                                        <a href="{{route('actuals.edit',$actual->id)}}"class="me-3 btn-xs sharp btn-secondary light">
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15px" height="15px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <rect x="0" y="0" width="24" height="24"></rect>
