@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActualController;
 use App\Http\Controllers\CommunityClaimController;
 use App\Http\Controllers\ContractsController;
 use App\Http\Controllers\InvestorController;
@@ -86,3 +87,5 @@ Route::get('/shared-doc/view/{doc}',[SharedDocsController::class,'viewDoc'])->na
 Route::get('/get/shared-doc/download/{doc}',[SharedDocsController::class,'downloadDoc'])->name('shared-document.download');
 
 Route::get('/community-claim-reward',CommunityClaimController::class)->name('claim.community-reward');
+
+Route::resource('/actuals', ActualController::class)->only(['create','index','edit']);
