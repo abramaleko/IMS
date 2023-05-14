@@ -19,6 +19,19 @@
                                </div>
                                <div class="modal-body">
 
+                                <div class="mb-3">
+                                    <label class="form-label font-w600">Project :<span class="text-danger scale5 ms-2">*</span></label>
+                                    <select wire:model.defer="new_asset.project_id" class="form-select" id="projects">
+                                        <option value="" selected disabled>Choose ..</option>
+                                        @foreach ($projects as $project)
+                                        <option value="{{$project->id}}">{{$project->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('new_asset.project_id')
+                                    <span class="text-danger fw-bold d-block">{{$message}}</span>
+                                  @enderror
+                                </div>
+
                                    <div class="mb-3">
                                        <label class="form-label">Asset Name</label>
                                        <input type="text" class="form-control" wire:model.defer="new_asset.asset_name">
@@ -87,6 +100,19 @@
                                 </button>
                             </div>
                             <div class="modal-body">
+
+                                <div class="mb-3">
+                                    <label class="form-label font-w600">Project :<span class="text-danger scale5 ms-2">*</span></label>
+                                    <select wire:model.defer="selectedAsset.project_id" class="form-select" id="projects">
+                                        <option value="" selected disabled>Choose ..</option>
+                                        @foreach ($projects as $project)
+                                        <option value="{{$project->id}}">{{$project->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('selectedAsset.project_id')
+                                    <span class="text-danger fw-bold d-block">{{$message}}</span>
+                                  @enderror
+                                </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Asset Name</label>
@@ -179,6 +205,7 @@
                        <thead>
                            <tr>
                                <th><strong>#</strong></th>
+                               <th><strong>Project</strong></th>
                                <th><strong>Name</strong></th>
                                <th><strong>Type</strong></th>
                                <th><strong>Reward Level</strong></th>
@@ -190,6 +217,7 @@
                            @foreach ($assets as $asset)
                            <tr>
                                <td><strong>{{$loop->iteration}}</strong></td>
+                               <td>{{$asset->project->name}}</td>
                                <td>{{$asset->asset_name}}</td>
                                <td>{{$asset->asset_type}}</td>
                                <td>{{$asset->reward_level}}</td>

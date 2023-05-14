@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Settings;
 
 use App\Models\Assets as ModelsAssets;
+use App\Models\Projects;
+
 
 use Livewire\Component;
 
@@ -14,11 +16,14 @@ class Assets extends Component
 
     public ModelsAssets $new_asset;
 
+    public $projects;
+
     protected $rules = [
         'new_asset.asset_name' => 'required|string',
         'new_asset.asset_type' => 'required|string',
         'new_asset.reward_level' => 'required|string',
         'new_asset.payout_amount' => 'required',
+        'new_asset.project_id' => 'required',
     ];
 
     public function render()
@@ -28,7 +33,9 @@ class Assets extends Component
 
     public function mount(){
         $this->new_asset = new ModelsAssets();
+        $this->new_asset->project_id='';
         $this->assets=ModelsAssets::all();
+        $this->projects=Projects::where('status',true)->get();
     }
 
     public function saveAsset(){
@@ -63,10 +70,12 @@ class Assets extends Component
             'selectedAsset.asset_type' => 'required|string',
             'selectedAsset.reward_level' => 'required|string',
             'selectedAsset.payout_amount' => 'required',
+            'selectedAsset.project_id' => 'required',
+
         ]);
 
-
         $asset=ModelsAssets::find($this->selectedAsset['id']);
+        $asset->project_id=$this->selectedAsset['project_id'];
         $asset->asset_name=$this->selectedAsset['asset_name'];
         $asset->asset_type=$this->selectedAsset['asset_type'];
         $asset->reward_level=$this->selectedAsset['reward_level'];
