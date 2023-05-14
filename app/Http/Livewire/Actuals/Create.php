@@ -56,4 +56,8 @@ class Create extends Component
         return redirect()->route('actuals.index')->with('success','Successfully created asset');
 
     }
+
+    public function resetForm(){
+        $this->reset(['project','year','month','ngr','community_share']);
+    }
 }

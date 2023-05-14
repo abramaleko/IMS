@@ -62,7 +62,6 @@
                      </div>
                      <div class="card-footer text-end">
                          <div>
-                             <a href="javascript:void(0);" wire:click="resetForm" class="btn btn-primary me-3">Reset</a>
                              <a href="javascript:void(0);" wire:loading.remove wire:click='submit' class="btn btn-secondary">Update</a>
 
                              <div wire:loading wire:target="submit">
