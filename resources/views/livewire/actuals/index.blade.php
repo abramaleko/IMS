@@ -26,15 +26,9 @@
                                 <th><strong>Project</strong></th>
                                 <th><strong>Year</strong></th>
                                 <th><strong>Month</strong></th>
-                                <th><strong>GS NGR</strong></th>
-                                <th><strong>GS COMMUNITY ALLOCATION</strong></th>
-                                <th><strong>CC NGR</strong></th>
-                                <th><strong>CC COMMUNITY ALLOCATION</strong></th>
-                                <th><strong>EX NGR</strong></th>
-                                <th><strong>EX COMMUNITY ALLOCATION</strong></th>
-                                <th><strong>UK NGR</strong></th>
-                                <th><strong>UK COMMUNITY ALLOCATION</strong></th>
-                                <th><strong>Created At</strong></th>
+                                <th><strong>NGR</strong></th>
+                                <th><strong>COMMUNITY SHARE</strong></th>
+                                <th><strong>CREATED AT</strong></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -45,15 +39,9 @@
                                 <td  class="text-center">{{ $actual->project->name }}</td>
                                 <td  class="text-center">{{ $actual->year }}</td>
                                 <td  class="text-center">{{ $actual->month }}</td>
-                                <td  class="text-center">{{ $actual->gs_ngr }}</td>
-                                <td  class="text-center">{{ $actual->gs_community_allocation }}</td>
-                                <td  class="text-center">{{ $actual->cc_ngr }}</td>
-                                <td class="text-center">{{ $actual->cc_community_allocation }}</td>
-                                <td  class="text-center">{{ $actual->ex_ngr }}</td>
-                                <td class="text-center">>{{ $actual->ex_community_allocation }}</td>
-                                <td  class="text-center">{{ $actual->uk_ngr }}</td>
-                                <td  class="text-center">{{ $actual->uk_community_allocation }}</td>
-                                <td  class="text-center">{{ $actual->created_at->format('Y-m-d') }}</td>
+                                <td  class="text-center">{{ $actual->ngr }}</td>
+                                <td  class="text-center">{{ $actual->community_share }}</td>
+                                <td >{{ $actual->created_at->format('Y-m-d') }}</td>
                                 <td>
                                     <div class="d-flex">
                                         <a href="{{route('actuals.edit',$actual->id)}}"class="me-3 btn-xs sharp btn-secondary light">

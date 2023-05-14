@@ -44,72 +44,21 @@
                               </div>
 
                               <div class="mb-4 col-xl-6 col-md-6">
-                                <label class="form-label font-w600">GS NGR<span class="text-danger scale5 ms-2">*</span></label>
-                                  <input type="number" wire:model.defer="gs_ngr"   class="mb-2 form-control solid"  aria-label="month">
-                                  @error('gs_ngr')
+                                <label class="form-label font-w600">NGR<span class="text-danger scale5 ms-2">*</span></label>
+                                  <input type="number" wire:model.defer="ngr"   class="mb-2 form-control solid"  aria-label="month">
+                                  @error('ngr')
                                     <span class="text-danger fw-bold">{{$message}}</span>
                                   @enderror
                               </div>
 
 
                               <div class="mb-4 col-xl-6 col-md-6">
-                                <label class="form-label font-w600">GS COMMUNITY ALLOCATION<span class="text-danger scale5 ms-2">*</span></label>
-                                  <input type="number" wire:model.defer="gs_community_allocation"   class="mb-2 form-control solid"  aria-label="month">
-                                  @error('gs_community_allocation')
+                                <label class="form-label font-w600"> COMMUNITY SHARE<span class="text-danger scale5 ms-2">*</span></label>
+                                  <input type="number" wire:model.defer="community_share"   class="mb-2 form-control solid"  aria-label="month">
+                                  @error('community_share')
                                     <span class="text-danger fw-bold">{{$message}}</span>
                                   @enderror
                               </div>
-
-
-                              <div class="mb-4 col-xl-6 col-md-6">
-                                <label class="form-label font-w600">CC NGR<span class="text-danger scale5 ms-2">*</span></label>
-                                  <input type="number" wire:model.defer="cc_ngr"   class="mb-2 form-control solid"  aria-label="month">
-                                  @error('cc_ngr')
-                                    <span class="text-danger fw-bold">{{$message}}</span>
-                                  @enderror
-                              </div>
-
-                              <div class="mb-4 col-xl-6 col-md-6">
-                                <label class="form-label font-w600">CC COMMUNITY ALLOCATION<span class="text-danger scale5 ms-2">*</span></label>
-                                  <input type="number" wire:model.defer="cc_community_allocation"   class="mb-2 form-control solid"  aria-label="month">
-                                  @error('cc_community_allocation')
-                                    <span class="text-danger fw-bold">{{$message}}</span>
-                                  @enderror
-                              </div>
-
-                              <div class="mb-4 col-xl-6 col-md-6">
-                                <label class="form-label font-w600">EX NGR<span class="text-danger scale5 ms-2">*</span></label>
-                                  <input type="number" wire:model.defer="ex_ngr"   class="mb-2 form-control solid"  aria-label="month">
-                                  @error('ex_ngr')
-                                    <span class="text-danger fw-bold">{{$message}}</span>
-                                  @enderror
-                              </div>
-
-                              <div class="mb-4 col-xl-6 col-md-6">
-                                <label class="form-label font-w600">EX COMMUNITY ALLOCATION<span class="text-danger scale5 ms-2">*</span></label>
-                                  <input type="number" wire:model.defer="ex_community_allocation"   class="mb-2 form-control solid"  aria-label="month">
-                                  @error('ex_community_allocation')
-                                    <span class="text-danger fw-bold">{{$message}}</span>
-                                  @enderror
-                              </div>
-
-                              <div class="mb-4 col-xl-6 col-md-6">
-                                <label class="form-label font-w600">UK NGR<span class="text-danger scale5 ms-2">*</span></label>
-                                  <input type="number" wire:model.defer="uk_ngr"   class="mb-2 form-control solid"  aria-label="month">
-                                  @error('uk_ngr')
-                                    <span class="text-danger fw-bold">{{$message}}</span>
-                                  @enderror
-                              </div>
-
-                              <div class="mb-4 col-xl-6 col-md-6">
-                                <label class="form-label font-w600">UK COMMUNITY ALLOCATION<span class="text-danger scale5 ms-2">*</span></label>
-                                  <input type="number" wire:model.defer="uk_community_allocation"   class="mb-2 form-control solid"  aria-label="month">
-                                  @error('uk_community_allocation')
-                                    <span class="text-danger fw-bold">{{$message}}</span>
-                                  @enderror
-                              </div>
-
-
                      </div>
                      <div class="card-footer text-end">
                          <div>

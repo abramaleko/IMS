@@ -13,7 +13,7 @@ class Create extends Component
 {
     public $projects;
 
-    public $project='',$year,$month,$gs_ngr,$gs_community_allocation,$cc_ngr,$cc_community_allocation,$ex_ngr,$ex_community_allocation,$uk_ngr,$uk_community_allocation;
+    public $project='',$year,$month,$ngr,$community_share;
 
     public function render()
     {
@@ -34,14 +34,9 @@ class Create extends Component
                              return $query->where('year', $this->year);
                          })
                     ],
-            'gs_ngr' => 'required',
-            'gs_community_allocation' => 'required',
-            'cc_ngr' => 'required',
-            'cc_community_allocation' => 'required',
-            'ex_ngr' => 'required',
-            'ex_community_allocation' => 'required',
-            'uk_ngr' => 'required',
-            'uk_community_allocation' => 'required',
+            'ngr' => 'required',
+            'community_share' => 'required',
+
         ]);
     }
 
@@ -52,14 +47,8 @@ class Create extends Component
         $actual->project_id=$this->project;
         $actual->year=$this->year;
         $actual->month=$this->month;
-        $actual->gs_ngr=$this->gs_ngr;
-        $actual->gs_community_allocation=$this->gs_community_allocation;
-        $actual->cc_ngr=$this->cc_ngr;
-        $actual->cc_community_allocation=$this->cc_community_allocation;
-        $actual->ex_ngr=$this->ex_ngr;
-        $actual->ex_community_allocation=$this->ex_community_allocation;
-        $actual->uk_ngr=$this->uk_ngr;
-        $actual->uk_community_allocation=$this->uk_community_allocation;
+        $actual->ngr=$this->ngr;
+        $actual->community_share=$this->community_share;
         $actual->save();
 
         $this->reset();
