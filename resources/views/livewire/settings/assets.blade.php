@@ -158,6 +158,15 @@
                                     @enderror
                                 </div>
 
+                                <div class="mb-3">
+                                    <label class="form-label" id="asset-status">Status</label>
+                                    <select class="form-control" wire:model="selectedAsset.status"id="asset-status">
+                                        <option value="1">Active</option>
+                                        <option value="0">Not Active</option>
+                                    </select>
+
+                                </div>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
@@ -210,6 +219,7 @@
                                <th><strong>Type</strong></th>
                                <th><strong>Reward Level</strong></th>
                                <th><strong>Payout Amount ($)</strong></th>
+                               <th><strong>Status</strong></th>
                                <th></th>
                            </tr>
                        </thead>
@@ -222,6 +232,7 @@
                                <td>{{$asset->asset_type}}</td>
                                <td>{{$asset->reward_level}}</td>
                                <td>{{$asset->payout_amount}}</td>
+                               <td>{{$asset->status ? 'Active' : 'Not Active'}}</td>
                                 <td>
                                     <div class="d-flex">
                                         <button @click="
