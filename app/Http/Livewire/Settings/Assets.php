@@ -14,16 +14,16 @@ class Assets extends Component
 
     public $selectedAsset;
 
-    public ModelsAssets $new_asset;
+    public $asset_name,$asset_type,$reward_level,$payout_amount;
 
-    public $projects;
+    public $projects, $selectedProjects=[];
 
     protected $rules = [
-        'new_asset.asset_name' => 'required|string',
-        'new_asset.asset_type' => 'required|string',
-        'new_asset.reward_level' => 'required|string',
-        'new_asset.payout_amount' => 'required',
-        'new_asset.project_id' => 'required',
+        'asset_name' => 'required|string',
+        'asset_type' => 'required|string',
+        'reward_level' => 'required|string',
+        'payout_amount' => 'required',
+        'selectedProjects' => 'required'
     ];
 
     public function render()
@@ -32,20 +32,24 @@ class Assets extends Component
     }
 
     public function mount(){
-        $this->new_asset = new ModelsAssets();
-        $this->new_asset->project_id='';
         $this->assets=ModelsAssets::all();
         $this->projects=Projects::where('status',true)->get();
     }
 
     public function saveAsset(){
         $this->validate();
-
-        $this->new_asset->save();
-
+        foreach ($this->selectedProjects as $project_id) {
+            $new_asset=new ModelsAssets();
+            $new_asset->project_id=$project_id;
+            $new_asset->asset_name=$this->asset_name;
+            $new_asset->asset_type=$this->asset_type;
+            $new_asset->reward_level=$this->reward_level;
+            $new_asset->payout_amount=$this->payout_amount;
+            $new_asset->save();
+        }
+        $this->reset(['selectedProjects','asset_name','asset_type','reward_level','payout_amount']);
+        
         session()->flash('AssetCreate', 'Successfully added a new asset');
-
-        $this->new_asset = new ModelsAssets();
 
         $this->assets=ModelsAssets::all();
 

@@ -9,6 +9,8 @@
 @endsection
 
 @section('styles')
+<link rel="stylesheet" href="{{asset('vendor/select2/css/select2.min.css')}}">
+
   <style>
         .form-control{
             background: #f0ebeb;
@@ -26,7 +28,7 @@
 
   @livewireScripts
   <script defer src="https://unpkg.com/alpinejs@3.10.1/dist/cdn.min.js"></script>
-
+  <script src="{{asset('vendor/select2/js/select2.full.min.js')}}"></script>
   <script>
     window.addEventListener('closeRoleModal', event => {
       $("#newRoleModal").modal('toggle');

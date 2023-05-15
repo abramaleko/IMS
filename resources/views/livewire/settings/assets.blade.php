@@ -19,24 +19,25 @@
                                </div>
                                <div class="modal-body">
 
-                                <div class="mb-3">
+                                <div wire:ignore>
                                     <label class="form-label font-w600">Project :<span class="text-danger scale5 ms-2">*</span></label>
-                                    <select wire:model.defer="new_asset.project_id" class="form-select" id="projects">
-                                        <option value="" selected disabled>Choose ..</option>
+                                   <select class="multi-select" id='selectProject' multiple="multiple">
                                         @foreach ($projects as $project)
                                         <option value="{{$project->id}}">{{$project->name}}</option>
                                         @endforeach
                                     </select>
-                                    @error('new_asset.project_id')
-                                    <span class="text-danger fw-bold d-block">{{$message}}</span>
-                                  @enderror
                                 </div>
+                                @error('selectedProjects')
+                                <div class="mt-2">
+                                    <span class="text-danger fw-bold">{{$message}}</span>
+                                </div>
+                                @enderror
 
-                                   <div class="mb-3">
+                                   <div class="my-3">
                                        <label class="form-label">Asset Name</label>
-                                       <input type="text" class="form-control" wire:model.defer="new_asset.asset_name">
+                                       <input type="text" class="form-control" wire:model.defer="asset_name">
 
-                                       @error('new_asset.asset_name')
+                                       @error('asset_name')
                                        <div class="mt-2">
                                            <span class="text-danger fw-bold">{{$message}}</span>
                                        </div>
@@ -45,9 +46,9 @@
 
                                    <div class="mb-3">
                                     <label class="form-label">Asset Type</label>
-                                    <input type="text" class="form-control" wire:model.defer="new_asset.asset_type">
+                                    <input type="text" class="form-control" wire:model.defer="asset_type">
 
-                                    @error('new_asset.asset_type')
+                                    @error('asset_type')
                                     <div class="mt-2">
                                         <span class="text-danger fw-bold">{{$message}}</span>
                                     </div>
@@ -56,9 +57,9 @@
 
                                 <div class="mb-3">
                                     <label class="form-label">Reward Level</label>
-                                    <input type="text" class="form-control" wire:model.defer="new_asset.reward_level">
+                                    <input type="text" class="form-control" wire:model.defer="reward_level">
 
-                                    @error('new_asset.reward_level')
+                                    @error('reward_level')
                                     <div class="mt-2">
                                         <span class="text-danger fw-bold">{{$message}}</span>
                                     </div>
@@ -67,9 +68,9 @@
 
                                 <div class="mb-3">
                                     <label class="form-label">Payout Amount</label>
-                                    <input type="number" class="form-control" wire:model.defer="new_asset.payout_amount">
+                                    <input type="number" class="form-control" wire:model.defer="payout_amount">
 
-                                    @error('new_asset.payout_amount')
+                                    @error('payout_amount')
                                     <div class="mt-2">
                                         <span class="text-danger fw-bold">{{$message}}</span>
                                     </div>
@@ -259,3 +260,16 @@
         </div>
      </div>
 </div>
+@section('component-scripts')
+<script>
+    $(document).ready(function() {
+        $('#selectProject').select2();
+
+        $('#selectProject').on('change', function (e) {
+                var data = $('#selectProject').select2("val");
+                  @this.selectedProjects=data;
+            });
+    });
+</script>
+@endsection
+
