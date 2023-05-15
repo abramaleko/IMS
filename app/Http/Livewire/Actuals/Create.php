@@ -31,7 +31,9 @@ class Create extends Component
             'month' => [
                          'required',
                          Rule::unique('actuals')->where(function ($query) {
-                             return $query->where('year', $this->year);
+                             return $query
+                             ->where('project_id', $this->project)
+                             ->where('year', $this->year);
                          })
                     ],
             'ngr' => 'required',
