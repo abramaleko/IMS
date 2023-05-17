@@ -105,17 +105,22 @@ class Settings extends Component
 
         $this->projects=Projects::all();
 
-        session()->flash('ProjectUpdate', 'Successfully updated project name');
+        session()->flash('success', 'Successfully updated project name');
 
         $this->dispatchBrowserEvent('closeEditProjectModal');
     }
 
-    public function deleteProject($project_id)
+    public function deleteProject(Projects $project)
     {
-        Projects::find($project_id)->delete();
-
+        if ($project->contracts) {
+            session()->flash('ProjectDelete', 'Can not delete project because it associated with a contract');
+            return;
+        }
+        $project->delete();
         //update project
         $this->projects=Projects::all();
+        session()->flash('success', 'Successfully deleted project');
+
     }
 
     public function newUser()
