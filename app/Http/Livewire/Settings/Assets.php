@@ -48,7 +48,7 @@ class Assets extends Component
             $new_asset->save();
         }
         $this->reset(['selectedProjects','asset_name','asset_type','reward_level','payout_amount']);
-        
+
         session()->flash('AssetCreate', 'Successfully added a new asset');
 
         $this->assets=ModelsAssets::all();
@@ -59,6 +59,10 @@ class Assets extends Component
 
     public function deleteAsset(ModelsAssets $asset){
 
+       if ($asset->contractAssets) {
+        session()->flash('AssetDelete', 'Can not delete asset because it associated with one or more contract');
+        return;
+    }
         $asset->delete();
 
         $this->assets=ModelsAssets::all();
