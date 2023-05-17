@@ -12,4 +12,8 @@ class Assets extends Model
     public function project(){
         return $this->belongsTo(Projects::class);
     }
+
+    public function contractAssets(){
+        return $this->hasMany(ContractAssets::class,'asset_id');
+    }
 }
