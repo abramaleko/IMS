@@ -73,6 +73,14 @@ class NewContract extends Component
             'newAssetAddress' => 'required|string'
         ]);
 
+        //check for duplicates
+        foreach ($this->contractAssets as $asset) {
+          if (in_array($this->newAssetAddress,$asset)) {
+            $this->addError('newAssetAddress', 'Asset address should be unique');
+            return;
+          }
+        }
+
         array_push($this->contractAssets,[
             'id' => $this->newAssetId,
             'asset_name' => $this->newAssetName,
