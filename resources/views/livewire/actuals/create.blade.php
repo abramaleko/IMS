@@ -14,7 +14,7 @@
                  <div class="card">
                      <div class="card-body">
                          <div class="row">
-                           <div class="mb-4 col-xl-6 col-md-6">
+                           <div class="mb-4 col-xl-12 col-md-12">
                                <label class="form-label font-w600">Projects :<span class="text-danger scale5 ms-2">*</span></label>
                                <select wire:model.defer="project" class="form-select" id="projects">
                                    <option value="" selected disabled>Choose ..</option>
@@ -44,7 +44,7 @@
                               </div>
 
 
-                              <div class="mb-4 col-xl-6 col-md-6">
+                              <div class="mb-4 col-xl-12 col-md-12">
                                 <label class="form-label font-w600">COMMUNITY SHARE<span class="text-danger scale5 ms-2">*</span></label>
                                   <input type="number" wire:model.defer="community_share"   class="mb-2 form-control solid"  aria-label="month">
                                   @error('community_share')
@@ -53,7 +53,7 @@
                               </div>
 
 
-                              <div class="mb-4 col-xl-6 col-md-6">
+                              <div class="mb-4 col-xl-12 col-md-12">
                                 <label class="form-label font-w600">NGR<span class="text-danger scale5 ms-2">*</span></label>
                                   <input type="number" wire:model.defer="ngr"   class="mb-2 form-control solid"  aria-label="month">
                                   @error('ngr')
