@@ -27,9 +27,9 @@ class Create extends Component
     public function validateForm(){
         $this->validate([
             'project' => 'required',
-            'year' => 'required|numeric',
+            'year' => 'required|integer|min:1900|max:2100',
             'month' => [
-                         'required',
+                         'required','integer','min:1','max:12',
                          Rule::unique('actuals')->where(function ($query) {
                              return $query
                              ->where('project_id', $this->project)
