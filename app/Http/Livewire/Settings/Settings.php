@@ -16,7 +16,7 @@ use Illuminate\Auth\Events\Registered;
 class Settings extends Component
 {
    public $roles,$role_name;
-   public $projects,$project_name,$selectedProject,$project_status;
+   public $projects,$project_name,$selectedProject,$project_status,$project_color;
    public $users,$f_name,$l_name,$email;
    public $community_claim_period;
     public function render()
@@ -78,13 +78,18 @@ class Settings extends Component
     public function newProject()
     {
         $this->validate([
-            'project_name' => 'required|string'
+            'project_name' => 'required|string',
+             'project_color' => 'required|string'
         ]);
 
-        Projects::create(['name'=>ucfirst($this->project_name)]);
+        Projects::create(
+            [
+                'name'=>ucfirst($this->project_name),
+                'color' => $this->project_color,
+            ]);
 
 
-        $this->reset('project_name');
+        $this->reset('project_name','project_color');
 
         //update project
         $this->projects=Projects::all();
@@ -95,11 +100,13 @@ class Settings extends Component
 
     public function updateProject(){
         $this->validate([
-            'selectedProject.name' => 'required|string'
+            'selectedProject.name' => 'required|string',
+            'selectedProject.color' => 'required|string'
         ]);
 
         $project=Projects::find($this->selectedProject['id']);
         $project->name=$this->selectedProject['name'];
+        $project->color=$this->selectedProject['color'];
         $project->status=$this->selectedProject['status'];
         $project->save();
 
@@ -112,7 +119,7 @@ class Settings extends Component
 
     public function deleteProject(Projects $project)
     {
-        if ($project->contracts) {
+        if ($project->contracts->isNotEmpty()) {
             session()->flash('ProjectDelete', 'Can not delete project because it associated with a contract');
             return;
         }

@@ -12,7 +12,8 @@ class Projects extends Model
     public $timestamps=false;
 
     protected $fillable=[
-        'name'
+        'name',
+        'color'
     ];
 
     public function contracts(){
