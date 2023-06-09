@@ -88,7 +88,7 @@
 
         <!-- TILE 2-->
         <div class="row">
-           <div class="col-xl-6 col-12">
+           <div class="col-12">
             <div class="card">
                 <div class="pb-0 border-0 card-header">
                     <h4 class="fs-20 font-w600">Trending Projects</h4>
@@ -119,6 +119,85 @@
                 </div>
             </div>
            </div>
+        </div>
+
+        <!-- TILE 3-->
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card" style="max-height: 400px; overflow-y: auto;">
+                    <div class="pb-0 border-0 card-header">
+                        <h4 class="mb-1 fs-20">Top Investors</h4>
+                    </div>
+                    <div class="pt-3 card-body loadmore-content">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="thead-primary">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Investor Name</th>
+                                        <th scope="col">Reward</th>
+                                        <th scope="col"></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   @forelse ($topInvestors as $name => $reward)
+                                   <tr>
+                                    <th>{{$loop->iteration}}</th>
+                                    <td>{{$name}}</td>
+                                    <td>{{$reward}}</td>
+                                    <td>
+                                        <button wire:click='getAssets("{{$name}}")'
+                                        type="button" class="btn btn-sm btn-primary">
+                                             View
+                                        </button>
+                                    </td>
+                                   </tr>
+                                   @empty
+                                   <h4 class="text-warning">No suffient data found!</h4>
+                                   @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+           @if ($investorAssets)
+           <div class="col-xl-6">
+            <div class="card" style="max-height: 400px; overflow-y: auto;">
+                <div class="pb-0 border-0 card-header">
+                    <h4 class="mb-1 fs-20">Contract Assets Held</h4>
+                </div>
+                <div class="pt-3 card-body loadmore-content">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-primary">
+                                <tr>
+                                    <th scope="col">Asset Type</th>
+                                    <th scope="col">Asset Address</th>
+                                    <th scope="col">Stacked</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               @forelse ($investorAssets as $asset)
+                               <tr>
+                                <th>{{$asset['asset_type']}}</th>
+                                <td>{{$asset['asset_address']}}</td>
+                                <td>{{$asset['stake'] ? 'True' : 'False'}}</td>
+                               </tr>
+                               @empty
+                               <h4 class="text-warning">No suffient data found!</h4>
+                               @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+           @endif
         </div>
 
 

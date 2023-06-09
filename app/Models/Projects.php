@@ -19,4 +19,8 @@ class Projects extends Model
     public function contracts(){
         return $this->hasMany(Contracts::class,'project_id');
     }
+
+    public function actuals(){
+        return $this->hasMany(Actuals::class,'project_id');
+    }
 }
