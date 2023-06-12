@@ -21,7 +21,9 @@
  	<!-- Apex Chart -->
      <script src="{{asset('vendor/apexchart/apexchart.js')}}"></script>
 
-     {{-- <script src="{{asset('vendor/chart.js/Chart.bundle.min.js')}}"></script> --}}
+           <!-- Chart ChartJS plugin files -->
+     <script src="{{asset('vendor/chart.js/Chart.bundle.min.js')}}"></script>
+     {{-- <script src="{{asset('js/plugins-init/chartjs-init.js')}}"></script> --}}
 
      <!-- Chart piety plugin files -->
      <script src="{{asset('vendor/peity/jquery.peity.min.js')}}"></script>

@@ -22,7 +22,7 @@
             </div>
             <div class="col-xl-8 col-xxl-6 col-lg-6 col-12 d-md-flex job-title-search pe-0">
                 <div class="input-group search-area">
-                    <input type="text" class="h-auto form-control" placeholder="enter investor name or email...">
+                    <input type="text" class="h-auto form-control" placeholder="Enter investor name or email ...">
                 <span class="input-group-text"><a href="javascript:void(0)" class="btn btn-primary btn-rounded">Search<i class="flaticon-381-search-2 ms-2"></i></a></span>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                 <div class="pb-0 border-0 card-header">
                     <h4 class="fs-20 font-w600">Trending Projects</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body" wire:ignore>
                     <div class="row align-items-center">
                        @if (count($trendingProjects) > 0)
                        <div class="col-xl-6 col-sm-6">
@@ -197,6 +197,16 @@
 
             </div>
         </div>
+        <div class="col-12" >
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Reward Over Time</h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="lineChart_2" height="130"></canvas>
+                </div>
+            </div>
+        </div>
            @endif
         </div>
 
@@ -248,5 +258,82 @@
         chart.render();
         })
 
+ </script>
+
+ <script>
+    window.addEventListener('showSelectedInvestorRewardTrend', event => {
+        let draw = Chart.controllers.line.__super__.draw;
+        let values=[];
+        let labels=[];
+        event.detail.rewards.map(item => {
+            labels.push(item.date);
+            values.push(item.reward)
+            return;
+            });
+        if(jQuery('#lineChart_2').length > 0 ){
+
+        const lineChart_2 = document.getElementById("lineChart_2").getContext('2d');
+        //generate gradient
+        const lineChart_2gradientStroke = lineChart_2.createLinearGradient(500, 0, 100, 0);
+        lineChart_2gradientStroke.addColorStop(0, "rgba(249, 58, 11, 1)");
+        lineChart_2gradientStroke.addColorStop(1, "rgba(249, 58, 11, 0.5)");
+
+        Chart.controllers.line = Chart.controllers.line.extend({
+            draw: function () {
+                draw.apply(this, arguments);
+                let nk = this.chart.chart.ctx;
+                let _stroke = nk.stroke;
+                nk.stroke = function () {
+                    nk.save();
+                    nk.shadowColor = 'rgba(0, 0, 128, .2)';
+                    nk.shadowBlur = 10;
+                    nk.shadowOffsetX = 0;
+                    nk.shadowOffsetY = 10;
+                    _stroke.apply(this, arguments)
+                    nk.restore();
+                }
+            }
+        });
+
+        lineChart_2.height = 100;
+
+        new Chart(lineChart_2, {
+            type: 'line',
+            data: {
+                defaultFontFamily: 'Poppins',
+                labels: labels,
+                datasets: [
+                    {
+                        label: "Reward Level",
+                        data: values,
+                        borderColor: lineChart_2gradientStroke,
+                        borderWidth: "2",
+                        backgroundColor: 'transparent',
+                        pointBackgroundColor: 'rgba(249, 58, 11, 0.5)'
+                    }
+                ]
+            },
+            options: {
+                legend: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            max: 5000,
+                            min: 0,
+                            stepSize: 500,
+                            padding: 5
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            padding: 5
+                        }
+                    }]
+                }
+            }
+        });
+        }
+    })
  </script>
 @endsection

@@ -7,8 +7,10 @@ use App\Models\CommunityClaimPeriod;
 use App\Models\Contracts;
 use App\Models\Investors;
 use App\Models\Projects;
+use Carbon\Carbon;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+
 
 class AdminDashboard extends Component
 {
@@ -16,7 +18,7 @@ class AdminDashboard extends Component
 
     public $trendingProjects=[],$allProjects;
 
-    public $topInvestors=[],$investorAssets=[];
+    public $topInvestors=[],$investorAssets=[],$allInvestorsGroupedRank=[];
 
     public function render()
     {
@@ -131,6 +133,7 @@ class AdminDashboard extends Component
           }
            array_push($investorsGroupedRank,$investorRank);
         }
+        $this->allInvestorsGroupedRank=$investorsGroupedRank;
         $this->topInvestors= [];
 
         foreach ($investorsGroupedRank as $entry) {
@@ -162,5 +165,21 @@ class AdminDashboard extends Component
                 ]);
              }
         }
+         $this->getRewardOverTime($name);
+    }
+
+
+    private function getRewardOverTime($name){
+     $rewards=[];
+       foreach ($this->allInvestorsGroupedRank as $investorsData) {
+         if ($investorsData['rank'][$name]) {
+          $monthName=Carbon::createFromFormat('m', $investorsData['month'])->format('F');
+           array_push($rewards,[
+            'date' => $monthName." ".$investorsData['year'],
+            'reward' => $investorsData['rank'][$name]
+           ]);
+         }
+       }
+       $this->dispatchBrowserEvent('showSelectedInvestorRewardTrend',['rewards' => $rewards]);
     }
 }
