@@ -22,8 +22,8 @@
             </div>
             <div class="col-xl-8 col-xxl-6 col-lg-6 col-12 d-md-flex job-title-search pe-0">
                 <div class="input-group search-area">
-                    <input type="text" class="h-auto form-control" placeholder="Enter investor name or email ...">
-                <span class="input-group-text"><a href="javascript:void(0)" class="btn btn-primary btn-rounded">Search<i class="flaticon-381-search-2 ms-2"></i></a></span>
+                    <input wire:model='searchInput' type="text" class="h-auto form-control" placeholder="Enter investor name or email ...">
+                <span class="input-group-text"><button wire:click='search' type="button" class="btn btn-primary btn-rounded">Search<i class="flaticon-381-search-2 ms-2"></i></button></span>
                 </div>
             </div>
         </div>
@@ -68,17 +68,18 @@
                                     <span>
                                         <i class="fas fa-calendar"></i>
                                     </span>
-                                    <h3 class="count">{{$allActiveContracts}}</h3>
-                                    <span class="fs-14">Active Contracts</span>
+                                    <h3 class="">{{number_format($totalAmountInvested)}}</h3>
+                                    <span class="fs-14">Total Amount Invested</span>
                                 </div>
                             </div>
+
                             <div class="col-xl-4 col-lg-4 col-sm-4 col-6">
                                 <div class="static-icon">
                                     <span>
                                         <i class="fas fa-calendar"></i>
                                     </span>
-                                    <h3 class="">{{number_format($totalAmountInvested)}}</h3>
-                                    <span class="fs-14">Total Amount Invested</span>
+                                    <h3 class="count">{{$allActiveContracts}}</h3>
+                                    <span class="fs-14">Total Contracts</span>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +156,7 @@
                                     </td>
                                    </tr>
                                    @empty
-                                   <h4 class="text-warning">No suffient data found!</h4>
+                                   <h4 class="text-warning">No data found!</h4>
                                    @endforelse
                                 </tbody>
                             </table>

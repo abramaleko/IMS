@@ -20,7 +20,7 @@ class AdminDashboard extends Component
 
     public $topInvestors=[],$investorAssets=[],$allInvestorsGroupedRank=[];
 
-    public $projectFilter='';
+    public $projectFilter='',$searchInput='';
 
     public function render()
     {
@@ -59,7 +59,7 @@ class AdminDashboard extends Component
        }
     }
 
-    private function calculateTopInvestors($project_id=null){
+    private function calculateTopInvestors($project_id=null,$search_query=null){
     /*
         Total actuals computation
         1- Group records by the same month&year,note in each month each project will have records
@@ -92,6 +92,9 @@ class AdminDashboard extends Component
         },
          'contracts.assets.assetInfo'
         ])
+        ->when($search_query,function($query,$search_query){
+            return $query->where('investor_name','like','%'.$search_query.'%');
+        })
         ->has('contracts.assets')
         ->select('id','investor_name')
         ->get()
@@ -214,5 +217,8 @@ class AdminDashboard extends Component
      }
     }
 
+    public function search(){
+        $this->calculateTopInvestors(null,$this->searchInput);
+    }
 
 }
