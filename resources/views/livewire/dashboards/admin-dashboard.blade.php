@@ -5,7 +5,8 @@
     </button>
 
     <div class="mt-4">
-        <div class="flex-wrap px-0 mb-4 bg-white d-flex align-items-center search-job" wire:ignore>
+        <a wire:click="clearFilters" style="text-decoration: underline;cursor:pointer" class="pb-2 ml-2 text-underline text-primary">Clear</a>
+        <div class="flex-wrap px-0 mt-2 mb-4 bg-white d-flex align-items-center search-job" wire:ignore>
             {{-- <div class="col-xl-2 col-xxl-3 col-lg-3 col-sm-6 col-12 search-dropdown d-flex align-items-center">
                 <select class="h-auto border-0 form-control default-select style-1">
                     <option>Choose Project</option>

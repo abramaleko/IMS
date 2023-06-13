@@ -221,4 +221,12 @@ class AdminDashboard extends Component
         $this->calculateTopInvestors(null,$this->searchInput);
     }
 
+    public function clearFilters(){
+        $this->allInvestors=Investors::count();
+        $this->totalAmountInvested=Contracts::sum('amount');
+        $this->allActiveContracts=Contracts::where('status',true)->count();
+        $this->allProjects=Projects::all();
+        $this->calculateTopInvestors();
+    }
+
 }
