@@ -23,8 +23,8 @@
             </div>
             <div class="col-xl-8 col-xxl-6 col-lg-6 col-12 d-md-flex job-title-search pe-0">
                 <div class="input-group search-area">
-                    <input wire:model='searchInput' type="text" class="h-auto form-control" placeholder="Enter investor name or email ...">
-                <span class="input-group-text"><button wire:click='search' type="button" class="btn btn-primary btn-rounded">Search<i class="flaticon-381-search-2 ms-2"></i></button></span>
+                    <input wire:model.defer='searchInput' type="text" class="h-auto form-control" placeholder="Enter investor name or email ...">
+                <span class="input-group-text"><button wire:click='search' wire:loading.class='disabled' type="button" class="btn btn-primary btn-rounded">Search<i class="flaticon-381-search-2 ms-2"></i></button></span>
                 </div>
             </div>
         </div>
