@@ -270,6 +270,7 @@
             values.push(item.reward)
             return;
             });
+            console.log(values);
         if(jQuery('#lineChart_2').length > 0 ){
 
         const lineChart_2 = document.getElementById("lineChart_2").getContext('2d');
@@ -318,10 +319,7 @@
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero: true,
-                            max: 5000,
-                            min: 0,
-                            stepSize: 500,
+                            beginAtZero: false,
                             padding: 5
                         }
                     }],
