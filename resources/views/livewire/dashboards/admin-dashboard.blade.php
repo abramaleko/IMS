@@ -147,7 +147,7 @@
                                     <td>{{$name}}</td>
                                     <td>{{$reward}}</td>
                                     <td>
-                                        <button wire:click='getAssets("{{$name}}")'
+                                        <button wire:click='getAssets("{{$name}}")' wire:loading.class='disabled'
                                         type="button" class="btn btn-sm btn-primary">
                                              View
                                         </button>
