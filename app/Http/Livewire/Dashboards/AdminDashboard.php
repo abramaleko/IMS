@@ -20,6 +20,8 @@ class AdminDashboard extends Component
 
     public $topInvestors=[],$investorAssets=[],$allInvestorsGroupedRank=[];
 
+    public $projectFilter='';
+
     public function render()
     {
         return view('livewire.dashboards.admin-dashboard');
@@ -57,7 +59,7 @@ class AdminDashboard extends Component
        }
     }
 
-    private function calculateTopInvestors(){
+    private function calculateTopInvestors($project_id=null){
     /*
         Total actuals computation
         1- Group records by the same month&year,note in each month each project will have records
@@ -70,6 +72,9 @@ class AdminDashboard extends Component
             $join->on('actuals.id', '=', 'grouped.id');
         })
         ->join('projects', 'actuals.project_id', '=', 'projects.id')
+        ->when($project_id, function ($query, $project_id) {
+            return $query->where('actuals.project_id', '=', $project_id);
+        })
         ->groupBy('actuals.year', 'actuals.month')
         ->select(
             'actuals.year',
@@ -78,8 +83,10 @@ class AdminDashboard extends Component
         )
         ->get();
 
-        $investorsData=Investors::with(['contracts' => function ($query) {
-            $query->select('id', 'project_id','investor_id');
+        $investorsData=Investors::with(['contracts' => function ($query) use($project_id) {
+            $query->when($project_id, function ($query) use ($project_id) {
+                return $query->where('project_id', $project_id);
+            })->select('id', 'project_id', 'investor_id');
         }, 'contracts.assets' => function ($query) {
             $query->select('id', 'asset_address', 'staked','contract_id','asset_id');
         },
@@ -138,7 +145,7 @@ class AdminDashboard extends Component
 
         foreach ($investorsGroupedRank as $entry) {
             foreach ($entry['rank'] as $name => $rank) {
-                if (isset($summedRanks[$name])) {
+                if (isset($this->topInvestors[$name])) {
                     $this->topInvestors[$name] += $rank;
                 } else {
                     $this->topInvestors[$name] = $rank;
@@ -150,8 +157,14 @@ class AdminDashboard extends Component
 
     public function getAssets($name){
         $this->reset('investorAssets');
+        $project_id=$this->projectFilter;
 
-        $investorData=Investors::with(['contracts.assets.assetInfo'])
+        $investorData=Investors::with([ 'contracts' => function($query) use ($project_id){
+            $query->when($project_id, function ($query) use ($project_id) {
+                return $query->where('project_id', $project_id);
+            });
+        },
+            'contracts.assets.assetInfo'])
         ->where('investor_name',$name)->first();
 
         $rawData=$investorData->toArray();
@@ -182,4 +195,24 @@ class AdminDashboard extends Component
        }
        $this->dispatchBrowserEvent('showSelectedInvestorRewardTrend',['rewards' => $rewards]);
     }
+
+    public function updatedProjectFilter($value)
+    {
+
+     if ($value == '') {
+        $this->totalAmountInvested=Contracts::sum('amount');
+        $this->allActiveContracts=Contracts::where('status',true)->count();
+        $this->allProjects=Projects::all();
+         $this->calculateTopInvestors();
+     }else {
+        $project=Projects::with('contracts.investor')->find($value);
+        $this->allInvestors=$project->contracts->count();
+        $this->allActiveContracts=Contracts::where('status',true)
+                                            ->where('project_id',$value)->count();
+      $this->totalAmountInvested=Contracts::where('project_id',$value)->sum('amount');
+         $this->calculateTopInvestors($value);
+     }
+    }
+
+
 }
