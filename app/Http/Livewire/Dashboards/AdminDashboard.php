@@ -20,7 +20,7 @@ class AdminDashboard extends Component
 
     public $topInvestors=[],$investorAssets=[],$allInvestorsGroupedRank=[];
 
-    public $projectFilter='',$searchInput='';
+    public $projectFilter='',$searchInput='',$dateFilter=false;
 
     protected $listeners= ['dateSelected'];
 
@@ -227,6 +227,9 @@ class AdminDashboard extends Component
     }
 
     public function clearFilters(){
+        $this->reset([
+            'projectFilter','searchInput','dateFilter'
+        ]);
         $this->allInvestors=Investors::count();
         $this->totalAmountInvested=Contracts::sum('amount');
         $this->allActiveContracts=Contracts::where('status',true)->count();
@@ -234,6 +237,7 @@ class AdminDashboard extends Component
     }
 
     public function dateSelected($startDate,$endDate){
+        $this->dateFilter=true;
         $startDate=Carbon::parse($startDate);
         $endDate=Carbon::parse($endDate);
 
