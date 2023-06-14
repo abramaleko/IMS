@@ -105,7 +105,6 @@ class AdminDashboard extends Component
         ->get()
         ->toArray();
 
-
         $investorContractInfo=[];
         foreach ($investorsData as $investor) {
             $data=[];
@@ -228,7 +227,7 @@ class AdminDashboard extends Component
 
     public function clearFilters(){
         $this->reset([
-            'projectFilter','searchInput','dateFilter'
+            'projectFilter','searchInput','dateFilter','investorAssets'
         ]);
         $this->allInvestors=Investors::count();
         $this->totalAmountInvested=Contracts::sum('amount');
