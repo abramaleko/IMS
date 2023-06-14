@@ -8,6 +8,8 @@
 
 @section('styles')
 <link href="{{asset('vendor/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet">
+<link href="{{asset('vendor/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+
 @livewireStyles
 @endsection
 
@@ -27,6 +29,11 @@
 
      <!-- Chart piety plugin files -->
      <script src="{{asset('vendor/peity/jquery.peity.min.js')}}"></script>
+
+       <!-- Daterangepicker -->
+    <!-- momment js is must -->
+    <script src="{{asset('vendor/moment/moment.min.js')}}"></script>
+    <script src="{{asset('vendor/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 
 <script>
     $(document).ready(function() {

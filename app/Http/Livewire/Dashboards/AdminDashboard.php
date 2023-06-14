@@ -22,6 +22,8 @@ class AdminDashboard extends Component
 
     public $projectFilter='',$searchInput='';
 
+    protected $listeners= ['dateSelected'];
+
     public function render()
     {
         return view('livewire.dashboards.admin-dashboard');
@@ -59,14 +61,13 @@ class AdminDashboard extends Component
        }
     }
 
-    private function calculateTopInvestors($project_id=null,$search_query=null){
+    private function calculateTopInvestors($project_id=null,$search_query=null,$dateFilter=null){
     /*
         Total actuals computation
         1- Group records by the same month&year,note in each month each project will have records
         2- After grouping in each group take each project (ngr*communtiy_reward)/100 and sum them
             then you will get the total actual
      */
-
     $total_actual = DB::table('actuals')
         ->join(DB::raw('(SELECT MIN(id) AS id FROM actuals GROUP BY project_id, month, year) AS grouped'), function ($join) {
             $join->on('actuals.id', '=', 'grouped.id');
@@ -74,6 +75,10 @@ class AdminDashboard extends Component
         ->join('projects', 'actuals.project_id', '=', 'projects.id')
         ->when($project_id, function ($query, $project_id) {
             return $query->where('actuals.project_id', '=', $project_id);
+        })
+        ->when($dateFilter,function($query,$dateFilter){
+            return $query->whereBetween('month',[ $dateFilter['startMonth'], $dateFilter['endMonth']])
+                          ->whereBetween('year',[ $dateFilter['startYear'], $dateFilter['endYear']]);
         })
         ->groupBy('actuals.year', 'actuals.month')
         ->select(
@@ -213,20 +218,46 @@ class AdminDashboard extends Component
         $this->allActiveContracts=Contracts::where('status',true)
                                             ->where('project_id',$value)->count();
       $this->totalAmountInvested=Contracts::where('project_id',$value)->sum('amount');
-         $this->calculateTopInvestors($value);
+         $this->calculateTopInvestors(project_id: $value);
      }
     }
 
     public function search(){
-        $this->calculateTopInvestors(null,$this->searchInput);
+        $this->calculateTopInvestors(search_query: $this->searchInput);
     }
 
     public function clearFilters(){
         $this->allInvestors=Investors::count();
         $this->totalAmountInvested=Contracts::sum('amount');
         $this->allActiveContracts=Contracts::where('status',true)->count();
-        $this->allProjects=Projects::all();
         $this->calculateTopInvestors();
+    }
+
+    public function dateSelected($startDate,$endDate){
+        $startDate=Carbon::parse($startDate);
+        $endDate=Carbon::parse($endDate);
+
+        $startDateFilter=[
+            'startMonth' => $startDate->format('m'),
+            'startYear' => $startDate->format('Y'),
+        ];
+        $endDateFilter=[
+            'endMonth' => $endDate->format('m'),
+            'endYear' => $endDate->format('Y'),
+        ];
+
+        $dateFilter=[
+            ... $startDateFilter,
+            ... $endDateFilter,
+        ];
+
+        $this->allInvestors=Investors::whereBetween('created_at',[$startDate,$endDate])->count();
+        $this->totalAmountInvested=Contracts::whereBetween('created_at',[$startDate,$endDate])->sum('amount');
+        $this->allActiveContracts=Contracts::where('status',true)
+        ->whereBetween('created_at',[$startDate,$endDate])->count();
+
+        $this->calculateTopInvestors(dateFilter: $dateFilter);
+
     }
 
 }

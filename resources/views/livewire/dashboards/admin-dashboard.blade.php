@@ -7,19 +7,8 @@
     <div class="mt-4">
         <a wire:click="clearFilters" style="text-decoration: underline;cursor:pointer" class="pb-2 ml-2 text-underline text-primary">Clear</a>
         <div class="flex-wrap px-0 mt-2 mb-4 bg-white d-flex align-items-center search-job" wire:ignore>
-            {{-- <div class="col-xl-2 col-xxl-3 col-lg-3 col-sm-6 col-12 search-dropdown d-flex align-items-center">
-                <select class="h-auto border-0 form-control default-select style-1">
-                    <option>Choose Project</option>
-                    <option>London</option>
-                    <option>France</option>
-                </select>
-            </div> --}}
-            <div class="col-xl-6 col-xxl-6 col-lg-3 col-sm-6 col-12 search-dropdown d-flex align-items-center">
-                <select class="h-auto border-0 form-control default-select style-1">
-                    <option>Date Range</option>
-                    <option>London</option>
-                    <option>France</option>
-                </select>
+            <div class="col-xl-6 col-xxl-6 col-lg-3 col-sm-6 col-12 d-flex align-items-center ">
+                <input class="border-0 form-control input-daterange-datepicker style-1" type="text" name="datefilter" value="01/01/2023 - 01/31/2023">
             </div>
             <div class="col-xl-8 col-xxl-6 col-lg-6 col-12 d-md-flex job-title-search pe-0">
                 <div class="input-group search-area">
@@ -336,5 +325,23 @@
         });
         }
     })
+ </script>
+
+ <script>
+$(function() {
+  $('input[name="datefilter"]').daterangepicker({
+    buttonClasses: ['btn', 'btn-sm'],
+         applyClass: 'btn-danger',
+         cancelClass: 'btn-inverse',
+         opens: 'left'
+  });
+
+  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+    let startDate=picker.startDate.format('YYYY-MM-DD');
+    let endDate= picker.endDate.format('YYYY-MM-DD');
+    Livewire.emit('dateSelected',startDate,endDate);
+  });
+
+});
  </script>
 @endsection
