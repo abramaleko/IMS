@@ -175,8 +175,8 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label">Project Color</label>
-                                            <input type="text" class="form-control" wire:model.defer="project_color">
+                                            <label class="form-label">Project Color <span class="text-muted">(Hex Color Code)</span></label>
+                                            <input type="text" class="form-control" wire:model.defer="project_color" placeholder="i.e #FFFF">
 
                                             @error('project_color')
                                             <div class="mt-2">
