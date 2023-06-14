@@ -20,8 +20,8 @@
           <a wire:click="clearFilters" style="text-decoration: underline;cursor:pointer" class="pb-2 ml-2 text-underline text-primary d-block">Clear</a>
        </p>
       </div>
-        <div class="flex-wrap px-0 mt-2 mb-4 bg-white d-flex align-items-center search-job" wire:ignore>
-            <div class="col-xl-6 col-xxl-6 col-lg-3 col-sm-6 col-12 d-flex align-items-center ">
+        <div class="flex-wrap px-0 mt-2 mb-4 bg-white d-flex align-items-center search-job " wire:ignore>
+            <div class="border-1 col-xl-6 col-xxl-6 col-lg-3 col-sm-6 col-12 d-flex align-items-center border-end">
                 <input class="border-0 form-control input-daterange-datepicker style-1" type="text" name="datefilter" value="01/01/2023 - 01/31/2023">
             </div>
             <div class="col-xl-8 col-xxl-6 col-lg-6 col-12 d-md-flex job-title-search pe-0">
