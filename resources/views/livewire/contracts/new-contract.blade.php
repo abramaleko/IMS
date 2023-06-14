@@ -86,7 +86,7 @@
                                                             <select wire:model="newAsset" class=" form-control wide solid" >
                                                                 <option value="" selected disabled>Choose ..</option>
                                                                 @foreach ($assets as $asset)
-                                                                  <option value="{{$asset}}">{{$asset->asset_name}}</option>
+                                                                  <option value="{{$asset}}">{{$asset->asset_name}} - {{$asset->project->name}}</option>
                                                                 @endforeach
                                                             </select>
                                                             @error('newAsset')
