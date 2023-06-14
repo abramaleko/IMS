@@ -14,7 +14,11 @@
 @endsection
 
 @section('main-content')
-   @livewire('dashboards.admin-dashboard')
+    @role('Super Administrator')
+       @livewire('dashboards.admin-dashboard')
+    @else
+       <h2>Investor dashboard coming soon 🤗</h2>
+    @endrole
 
 @endsection
 
