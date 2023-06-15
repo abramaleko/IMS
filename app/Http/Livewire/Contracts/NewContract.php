@@ -22,6 +22,7 @@ class NewContract extends Component
     public $investor_id="",$project="",$amount,$roi_period,$start_date,$contract_duration,$payment_slips=[],$contracts=[],$additional_description,$additional_attachments=[];
     public $newAsset='',$newAssetId,$newAssetName,$newAssetType,$newRewardLevel,$newPayoutAmout,$newAssetAddress;
     public $assets,$contractAssets=[];
+    public $newStakeOption="";
 
     public function render()
     {
@@ -70,8 +71,8 @@ class NewContract extends Component
     public function addContractAsset(){
         $this->validate([
             'newAsset' => 'required',
-            'newAssetAddress' => 'required|string|unique:contract_assets,asset_address'
-
+            'newAssetAddress' => 'required|string|unique:contract_assets,asset_address',
+            'newStakeOption' => 'required',
         ]);
 
         //check for duplicates
@@ -88,7 +89,8 @@ class NewContract extends Component
             'asset_type' => $this->newAssetType,
             'reward_level' => $this->newRewardLevel,
             'payout_amount' => $this->newPayoutAmout,
-            'asset_address' => $this->newAssetAddress
+            'asset_address' => $this->newAssetAddress,
+            'staked' => $this->newStakeOption == "1" ? true : false,
         ]);
 
         $this->reset(['newAsset','newAssetId','newAssetName','newAssetType','newRewardLevel','newPayoutAmout','newAssetAddress']);
@@ -150,6 +152,7 @@ class NewContract extends Component
            $contractAsset->asset_id=$asset['id'];
            $contractAsset->asset_address=$asset['asset_address'];
            $contractAsset->contract_id=$contract_info->id;
+           $contractAsset->staked=$asset['staked'];
            $contractAsset->save();
         }
 

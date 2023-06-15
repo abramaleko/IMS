@@ -117,6 +117,18 @@
                                                               @enderror
                                                         </div>
 
+                                                        <div class="mt-4">
+                                                            <label class="form-label font-w600">Staked<span class="text-danger scale5 ms-2">*</span></label>
+                                                            <select wire:model.defer="newStakeOption" class="form-control">
+                                                                <option value="" selected disabled>Choose ..</option>
+                                                                <option value="1">Yes</option>
+                                                                <option value="0">No</option>
+                                                            </select>
+                                                              @error('newStakeOption')
+                                                                <span class="text-danger fw-bold">{{$message}}</span>
+                                                              @enderror
+                                                        </div>
+
 
                                                     </div>
                                                     <div class="modal-footer">
@@ -146,6 +158,8 @@
                                                     <th><strong>Reward Level</strong></th>
                                                     <th><strong>Payout Amount</strong></th>
                                                     <th><strong>Asset Address</strong></th>
+                                                    <th><strong>Staked</strong></th>
+
 
                                                     <th></th>
                                                 </tr>
@@ -159,6 +173,7 @@
                                                 <td>{{$asset['reward_level']}}</td>
                                                 <td>{{$asset['payout_amount']}}</td>
                                                 <td>{{$asset['asset_address']}}</td>
+                                                <td>{{$asset['staked'] ? 'True' : 'False'}}</td>
                                                 <td>
                                                     <div class="d-flex">
                                                         <a href="#" wire:click="removeContractAsset({{$loop->iteration}})" class="shadow btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a>
