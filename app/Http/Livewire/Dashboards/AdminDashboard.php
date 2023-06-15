@@ -105,6 +105,7 @@ class AdminDashboard extends Component
         ->get()
         ->toArray();
 
+        //this will get each investor contract assets and its payable amount
         $investorContractInfo=[];
         foreach ($investorsData as $investor) {
             $data=[];
@@ -162,12 +163,13 @@ class AdminDashboard extends Component
         arsort($this->topInvestors);
     }
 
+    //returns the contract assets hold by each investor
     public function getAssets($name){
         $this->reset('investorAssets');
         $project_id=$this->projectFilter;
 
         $investorData=Investors::with([ 'contracts' => function($query) use ($project_id){
-            $query->when($project_id, function ($query) use ($project_id) {
+            $query->when($project_id, function ($query) use ($project_id) {  //filter using project_id if set in by the project filter
                 return $query->where('project_id', $project_id);
             });
         },
@@ -235,6 +237,10 @@ class AdminDashboard extends Component
         $this->calculateTopInvestors();
     }
 
+    /*
+      This event function is triggered when the the apply button is clicked
+      in the date picker input
+    */
     public function dateSelected($startDate,$endDate){
         $this->dateFilter=true;
         $startDate=Carbon::parse($startDate);
