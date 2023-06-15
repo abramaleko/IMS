@@ -59,7 +59,7 @@ class Assets extends Component
 
     public function deleteAsset(ModelsAssets $asset){
 
-       if ($asset->contractAssets) {
+       if ($asset->contractAssets->isNotEmpty()) {
         session()->flash('AssetDelete', 'Can not delete asset because it associated with one or more contract');
         return;
     }

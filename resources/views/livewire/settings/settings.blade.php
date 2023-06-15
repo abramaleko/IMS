@@ -173,6 +173,17 @@
                                             </div>
                                             @enderror
                                         </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Project Color <span class="text-muted">(Hex Color Code)</span></label>
+                                            <input type="text" class="form-control" wire:model.defer="project_color" placeholder="i.e #FFFF">
+
+                                            @error('project_color')
+                                            <div class="mt-2">
+                                                <span class="text-danger fw-bold">{{$message}}</span>
+                                            </div>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
@@ -191,7 +202,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Change Project Name</h5>
+                                        <h5 class="modal-title">Change Project Info</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal">
                                         </button>
                                     </div>
@@ -202,6 +213,17 @@
                                             <input type="text" class="form-control" wire:model.defer="selectedProject.name">
 
                                             @error('selectedProject.name')
+                                            <div class="mt-2">
+                                                <span class="text-danger fw-bold">{{$message}}</span>
+                                            </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Project Color</label>
+                                            <input type="text" class="form-control" wire:model.defer="selectedProject.color">
+
+                                            @error('selectedProject.color')
                                             <div class="mt-2">
                                                 <span class="text-danger fw-bold">{{$message}}</span>
                                             </div>
@@ -235,7 +257,7 @@
                     @if (session()->has('success'))
                     <div class="alert alert-success alert-dismissible fade show">
                       <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-                      {{ session('ProjectUpdate') }}
+                      {{ session('success') }}
                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
                       </button>
                   </div>
