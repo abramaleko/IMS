@@ -119,6 +119,20 @@
                                   <span class="text-danger fw-bold">{{$message}}</span>
                                 @enderror
                             </div>
+                            <div class="mb-4 col-xl-6 col-md-6">
+                                <label class="form-label font-w600">Reward Address</label>
+                                <input type="text" wire:model.defer="reward_address" class="mb-2 form-control solid " aria-label="name">
+                                 @error('reward_address')
+                                  <span class="text-danger fw-bold">{{$message}}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-4 col-xl-6 col-md-6">
+                                <label class="form-label font-w600">Chain</label>
+                                <input type="text" wire:model.defer="chain" class="mb-2 form-control solid " aria-label="name">
+                                 @error('chain')
+                                  <span class="text-danger fw-bold">{{$message}}</span>
+                                @enderror
+                            </div>
                       </div>
                       <div class="card-footer text-end">
                           <div>

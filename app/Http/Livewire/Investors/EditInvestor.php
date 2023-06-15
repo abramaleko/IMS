@@ -11,7 +11,7 @@ class EditInvestor extends Component
    public $open2=false,$final=false;
 
    public $investor_name,$dob,$gender,$residence,$phone_no,$email,$id_copy;
-   public $account_name,$account_number,$bank_name;
+   public $account_name,$account_number,$bank_name,$reward_address,$chain;
    public $next_kin_name,$next_kin_relationship,$next_kin_phone,$next_of_kin_id_copy;
 
    public $investor;
@@ -33,6 +33,8 @@ class EditInvestor extends Component
         $this->account_name=$investor->account_name;
         $this->account_number=$investor->account_number;
         $this->bank_name=$investor->bank_name;
+        $this->reward_address=$investor->reward_address;
+        $this->chain=$investor->chain;
 
         $this->next_kin_name=$investor->nxt_kin_name;
         $this->next_kin_relationship=$investor->nxt_kin_relationship;
@@ -95,6 +97,8 @@ class EditInvestor extends Component
             $this->investor->account_name=$this->account_name;
             $this->investor->account_number=$this->account_number;
             $this->investor->bank_name=$this->bank_name;
+            $this->investor->reward_address=$this->reward_address;
+            $this->investor->chain=$this->chain;
 
             $this->investor->nxt_kin_name=$this->next_kin_name;
             $this->investor->nxt_kin_relationship=$this->next_kin_relationship;
