@@ -4,16 +4,19 @@ namespace App\Http\Livewire\Dashboards;
 
 use App\Models\CommunityClaimPeriod;
 use App\Models\Investors;
+use App\Models\monthlyRewardClaims;
+use App\Notifications\RewardClaim;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Carbon\Carbon;
-
+use GrahamCampbell\ResultType\Success;
 
 class InvestorDashboard extends Component
 {
     public $withdrawalState,$investorAssets=[],$investorRawData,$investorRewards=[];
 
+    public $currentReward,$claimStatus;
 
     public function render()
     {
@@ -24,6 +27,7 @@ class InvestorDashboard extends Component
         $this->withdrawalState=CommunityClaimPeriod::first()->value;
         $this->getContractAssets();
         $this->getRewardOverTime();
+        $this->getClaimStatus();
     }
 
     private function getContractAssets(){
@@ -95,5 +99,34 @@ class InvestorDashboard extends Component
            ]);
        }
 
+       $this->currentReward=end($this->investorRewards);
+    }
+
+    public function claimReward(){
+        $investor=Auth::user();
+
+        monthlyRewardClaims::create([
+            'investor_id'=> $investor->investor_id,
+            'claim_period' => $this->currentReward['date'],
+            'reward_address' =>  $this->investorRawData['reward_address'],
+            'amount' => $this->currentReward['reward'],
+        ]);
+
+        $investor->notify(new RewardClaim($this->currentReward['reward'],$this->investorRawData['reward_address'],$this->currentReward['date']));
+
+        session()->flash('claimedReward', 'Congratulations on claiming your monthly reward');
+
+        $this->getClaimStatus();
+
+        $this->dispatchBrowserEvent('closeRewardModal');
+
+    }
+
+    //checks if investor has claimed current month reward
+    public function getClaimStatus(){
+        $investor=Auth::user();
+        $this->claimStatus=monthlyRewardClaims::where('investor_id',$investor->investor_id)
+                                               ->where('claim_period',$this->currentReward['date'])
+                                               ->first();
     }
 }
