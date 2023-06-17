@@ -14,7 +14,7 @@ use GrahamCampbell\ResultType\Success;
 
 class InvestorDashboard extends Component
 {
-    public $withdrawalState,$investorAssets=[],$investorRawData,$investorRewards=[];
+    public $withdrawalState,$totalReward=0,$investorAssets=[],$investorRawData,$investorRewards=[];
 
     public $currentReward,$claimStatus;
 
@@ -87,9 +87,9 @@ class InvestorDashboard extends Component
                 $t_actual=$t_actual+$amount;
             }
             $investorReward['reward']=$t_actual;
+            $this->totalReward=$this->totalReward+$t_actual;
             array_push($investorGroupedRewards,$investorReward);
         }
-
         $this->investorRewards=[];
        foreach ($investorGroupedRewards as $investorsData) {
           $monthName=Carbon::createFromFormat('m', $investorsData['month'])->format('F');

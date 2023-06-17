@@ -5,7 +5,20 @@
     </button>
 
     <div class="mt-4 row">
-        <div class="col-xl-6 col-12">
+        <div class="card col-xl-4 col-12">
+            <div class="card-body">
+                <div class="static-icon">
+                    <span>
+                        <i class="fas fa-calendar"></i>
+                    </span>
+                    <h3 class="">${{$totalReward}}</h3>
+                    <span class="fs-14">Total Reward</span>
+                </div>
+            </div>
+          </div>
+
+
+        <div class="col-xl-8 col-12">
             <div class="card" style="max-height: 400px; overflow-y: auto;">
                 <div class="pb-0 border-0 card-header">
                     <h4 class="mb-1 fs-20">Contract Assets Held</h4>
@@ -38,7 +51,10 @@
             </div>
         </div>
 
-        <div class="col-xl-6 col-12">
+    </div>
+
+    <div class="mt-4 row">
+        <div class="col-xl-12 col-12">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Reward Over Time</h4>
