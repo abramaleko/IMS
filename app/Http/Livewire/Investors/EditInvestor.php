@@ -65,6 +65,7 @@ class EditInvestor extends Component
         'account_name' => 'required|string|max:50',
         'account_number' => 'required|string',
         'bank_name' => 'required|string',
+        'reward_address' => 'required|string'
         ]);
 
         //shows the last page

@@ -55,7 +55,7 @@ class NewInvestor extends Component
         'account_name' => 'required|string|max:50',
         'account_number' => 'required|string',
         'bank_name' => 'required|string',
-        'reward_address' => 'nullable|string',
+        'reward_address' => 'required|string',
         'chain' => 'nullable|string'
         ]);
 
