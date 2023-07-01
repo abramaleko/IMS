@@ -97,7 +97,12 @@
                                     @foreach ($contract->assets as $asset)
                                     <span class="mb-1 d-block"><i class="fas fa-circle me-2"></i>
                                         Asset Name: <strong>{{$asset->assetInfo->asset_name}},</strong>
-                                        Asset Address: <strong>{{$asset->asset_address}},</strong>
+                                        Asset Address: <strong>{{$asset->asset_address}}</strong>
+                                        @if ($asset->verified)
+                                        <span class="badge badge-pill badge-success">Verified</span>
+                                        @else
+                                        <span class="badge badge-pill badge-primary">Not verified</span>
+                                        @endif
                                     </span>
                                     @endforeach
 
