@@ -183,7 +183,7 @@
                                 <tr>
                                     <th scope="col">Asset Type</th>
                                     <th scope="col">Asset Address</th>
-                                    <th scope="col">Stacked</th>
+                                    <th scope="col">Staked</th>
                                 </tr>
                             </thead>
                             <tbody>
