@@ -13,4 +13,8 @@ class ContractAssets extends Model
         return $this->belongsTo(Assets::class,'asset_id');
     }
 
+    public function contract(){
+        return $this->belongsTo(Contracts::class,'contract_id');
+    }
+
 }

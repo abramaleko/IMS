@@ -673,6 +673,7 @@
                 <ul aria-expanded="false" class="left mm-collapse"style="height:14px;">
                     <li><a href="{{route('contracts.index')}}">View Contracts</a></li>
                     <li><a href="{{route('contract.new')}}">Add Contract</a></li>
+                    <li><a href="{{route('contract.asset-verify.index')}}">Validate Contract Assets</a></li>
                 </ul>
             </li>
              @endcan

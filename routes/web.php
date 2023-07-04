@@ -68,6 +68,12 @@ Route::prefix('contracts')->middleware(['auth','verified','twofactor','change-pa
 
     Route::delete('/contract/{contract}/delete',[ContractsController::class,'deleteContract'])->name('contract.delete');
 
+    Route::get('/contract-asset-verification',[ContractsController::class,'verifyContractAssetsPage'])->name('contract.asset-verify.index');
+
+    Route::get('/contract/{asset}/verify-asset',[ContractsController::class,'verifyContractAssets'])->name('contract.asset-verify');
+
+    Route::get('/contract/verified-assets',[ContractsController::class,'verifiedAssets'])->name('contract.asset-verified');
+
 });
 
 Route::get('/settings',[SettingsController::class,'index'])->name('settings');

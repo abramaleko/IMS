@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContractAssets;
 use App\Models\Contracts;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -94,5 +95,29 @@ class ContractsController extends Controller
 
         return redirect()->route('contracts.index')->with('success','Contract Deleted Successfully');
 
+    }
+
+    public function verifyContractAssetsPage(){
+    $unverifiedContractAssets=ContractAssets::with(['contract.project','contract.investor','assetInfo'])
+                              ->where('verified',false)
+                              ->get();
+       return view('contracts.verify-assets',['unverifiedContractAssets' => $unverifiedContractAssets]);
+    }
+
+    public function verifyContractAssets(ContractAssets $asset){
+
+     $asset->verified=true;
+     $asset->save();
+
+     return redirect()->route('contract.asset-verify.index')->with('success','Asset verified successfully');
+
+    }
+
+    public function verifiedAssets(){
+        $verifiedContractAssets=ContractAssets::with(['contract.project','contract.investor','assetInfo'])
+        ->where('verified',true)
+        ->get();
+
+        return view('contracts.verified-assets',['verifiedContractAssets' => $verifiedContractAssets]);
     }
 }
