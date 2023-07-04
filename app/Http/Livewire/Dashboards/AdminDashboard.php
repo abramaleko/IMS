@@ -93,7 +93,7 @@ class AdminDashboard extends Component
                 return $query->where('project_id', $project_id);
             })->select('id', 'project_id', 'investor_id');
         }, 'contracts.assets' => function ($query) {
-            $query->select('id', 'asset_address', 'staked','contract_id','asset_id');
+            $query->select('id', 'asset_address', 'staked','contract_id','asset_id','verified');
         },
          'contracts.assets.assetInfo'
         ])
@@ -116,7 +116,7 @@ class AdminDashboard extends Component
               foreach ($investor['contracts'] as $contract) {
                   foreach ($contract['assets'] as $asset) {
                     $dataAssets=[]; //this will hold the contract assets for that contract after checking if asset is staked
-                     if ($asset['staked']) {
+                     if ($asset['staked'] && $asset['verified']) {
                         $dataAssets=[
                             'asset_name'=> $asset['asset_info'] ['asset_name'],
                             'payout_amount'=> $asset['asset_info'] ['payout_amount'],

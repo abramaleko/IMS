@@ -42,7 +42,8 @@ class InvestorDashboard extends Component
                    'asset_type' => $asset['asset_info']['asset_type'],
                    'asset_address' => $asset['asset_address'],
                    'stake' => $asset['staked'],
-                   'payout_amount' =>  $asset['asset_info']['payout_amount']
+                   'payout_amount' =>  $asset['asset_info']['payout_amount'],
+                   'verified' => $asset['verified']
                ]);
             }
        }
@@ -67,7 +68,7 @@ class InvestorDashboard extends Component
         //calculate reward level over time
         $dataAssets=[]; //holds the staked assets
         foreach($this->investorAssets as $asset){
-            if ($asset['stake']) {
+            if ($asset['stake'] && $asset['verified']) {
               array_push($dataAssets,[
                 'asset_name'=> $asset['asset_type'],
                 'payout_amount'=> $asset['payout_amount'],
