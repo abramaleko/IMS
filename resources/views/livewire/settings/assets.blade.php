@@ -1,5 +1,3 @@
-<div class="row">
-    <div class="col-xl-12">
         <div class="card" style="max-height: 25rem;">
            <div class="card-header">
                <h4 class="card-title">Assets</h4>
@@ -46,7 +44,12 @@
 
                                    <div class="mb-3">
                                     <label class="form-label">Asset Type</label>
-                                    <input type="text" class="form-control" wire:model.defer="asset_type">
+                                    <select wire:model.defer="asset_type" class="form-control">
+                                        <option value="" disabled>Choose ..</option>
+                                        @foreach ($assetTypes as $assetType)
+                                        <option value="{{$assetType->name}}">{{$assetType->name}}</option>
+                                        @endforeach
+                                    </select>
 
                                     @error('asset_type')
                                     <div class="mt-2">
@@ -258,8 +261,6 @@
                </div>
            </div>
         </div>
-     </div>
-</div>
 @section('component-scripts')
 <script>
     $(document).ready(function() {

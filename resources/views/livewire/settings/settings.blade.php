@@ -316,7 +316,14 @@
         </div>
     </div>
 
-    @livewire('settings.assets')
+    <div class="row">
+        <div class="col-xl-8">
+            @livewire('settings.assets')
+        </div>
+        <div class="col-xl-4">
+           @livewire('settings.asset-types')
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-xl-12">

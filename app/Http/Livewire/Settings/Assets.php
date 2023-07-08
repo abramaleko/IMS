@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Settings;
 
 use App\Models\Assets as ModelsAssets;
+use App\Models\AssetTypes;
 use App\Models\Projects;
 
 
@@ -14,7 +15,9 @@ class Assets extends Component
 
     public $selectedAsset;
 
-    public $asset_name,$asset_type,$reward_level,$payout_amount;
+    public $asset_name,$asset_type='',$reward_level,$payout_amount;
+
+    public $assetTypes;
 
     public $projects, $selectedProjects=[];
 
@@ -34,6 +37,7 @@ class Assets extends Component
     public function mount(){
         $this->assets=ModelsAssets::all();
         $this->projects=Projects::where('status',true)->get();
+        $this->assetTypes=AssetTypes::all();
     }
 
     public function saveAsset(){

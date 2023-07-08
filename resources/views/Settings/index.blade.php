@@ -58,5 +58,9 @@ window.addEventListener('communityClaimModal', event => {
       $("#community-claim").modal('toggle');
 })
 
+window.addEventListener('closeAssetTypeModal', event => {
+      $("#newAssetTypeName").modal('toggle');
+})
+
 </script>
 @endsection
