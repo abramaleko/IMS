@@ -67,7 +67,9 @@
                 </div>
                 <div>
                     <a href="{{route('investor.edit',$investor->id)}}" class="mb-2 btn btn-success btn-md me-2"><i class="bi bi-pen-fill me-2"></i>Edit Profile</a>
+                    @role('Super Administrator')
                     <a href="{{route('investor.delete',$investor->id)}}" class="mb-2 btn btn-warning btn-md me-2"><i class="bi bi-archive-fill me-2"></i>Delete Profile</a>
+                    @endrole
                 </div>
             </div>
         </div>

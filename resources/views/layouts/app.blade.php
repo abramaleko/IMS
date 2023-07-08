@@ -687,6 +687,20 @@
             </li>
              @endcan
 
+             @role('Investor')
+             <li class="{{Request::is(['user.investment-profile']) ? 'mm-active' : ''}}">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-021-command"></i>
+                    <span class="nav-text">Investments</span>
+                </a>
+
+                <ul aria-expanded="false" class="left mm-collapse"style="height:14px;">
+                    <li><a href="{{route('user.investment-profile')}}">Investor Profile</a></li>
+                    <li><a href="{{route('user.investment-contracts')}}">Investor Contracts</a></li>
+                </ul>
+            </li>
+             @endrole
+
              @can('View Shared Documents')
              <li class="{{Request::is('shared-docs.index') ? 'mm-active' : ''}}">
                 <a class="" href="{{route('shared-docs.index')}}">

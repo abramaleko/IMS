@@ -7,6 +7,7 @@ use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SharedDocsController;
+use App\Http\Controllers\UserInvestorController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -36,7 +37,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
-Route::prefix('investors')->middleware(['auth','verified','twofactor','change-password'])->group(function () {
+Route::prefix('admin/investors')->middleware(['auth','verified','twofactor','change-password'])->group(function () {
 
     Route::get('/new',[InvestorController::class,'index'])->name('investors.index');
 
@@ -95,3 +96,14 @@ Route::get('/get/shared-doc/download/{doc}',[SharedDocsController::class,'downlo
 Route::get('/community-claim-reward',CommunityClaimController::class)->name('claim.community-reward');
 
 Route::resource('/actuals', ActualController::class)->only(['create','index','edit']);
+
+
+Route::group([],function(){
+    Route::get('/investor-profile',[UserInvestorController::class,'investorProfile'])->name('user.investment-profile');
+
+    Route::get('/investor-contracts',[UserInvestorController::class,'investorContracts'])->name('user.investment-contracts');
+
+    Route::get('/investor-contract/{contract}/details',[UserInvestorController::class,'investorContractDetails'])->name('user.investment-contracts-details');
+
+    Route::get('/investor-contract/{id}/edit',[UserInvestorController::class,'editContract'])->name('user.investment-profile.edit');
+});

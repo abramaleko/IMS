@@ -111,4 +111,8 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->two_factor_expires_at = null;
         $this->save();
     }
+
+    public function investor(){
+        return $this->belongsTo(Investors::class,'investor_id');
+    }
 }
