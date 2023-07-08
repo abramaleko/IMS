@@ -64,8 +64,8 @@ class EditContract extends Component
          'additional_attachments.*' => 'nullable|mimes:png,jpeg,jpg,pdf|max:5120' // 5MB Max
     ];
 
-    public function updatedNewAsset($value){
-        $asset=json_decode($value);
+    public function updatedNewAsset($asset_id){
+        $asset=Assets::find($asset_id);
 
         $this->newAssetId=$asset->id;
 
