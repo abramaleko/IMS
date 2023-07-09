@@ -33,7 +33,11 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Contract Assets (Verified)</h4>
+                    <h4 class="card-title">Contract Assets<span style="margin-left: 6px;
+                        font-size: 10px;" class="ml-4 badge badge-success">Verified</span></h4>
+                    <div>
+                        <a href="{{route('contract.asset-verify.index')}}" class="btn btn-primary me-3 btn-sm">Unverified Assets</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
