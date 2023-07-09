@@ -80,43 +80,46 @@
                   </button>
               </div>
                 @endif
-                <p class="card-text">Hi {{$investorRawData['investor_name']}}, You can now claim your ${{$currentReward['reward']}} reward for {{$currentReward['date']}},
-                    To claim your reward you need to share the post to at least one social media
-                </p>
-
-                <div class="card-text w-50 d-flex justify-content-center row"> <!-- Add justify-content-center class -->
-                    <div class="mb-3 input-success-o input-group">
-                      <span class="input-group-text" style="background: #3b5998;
-                      border-color: #3b5998;
-                      color: #fff;"><i class="fab fa-facebook-f"></i></span>
-                      <input type="text" value="{{$shareLinks['facebook']}}" class="form-control form-control-sm solid" id="facebook-input">
-                      <button type="button" onclick="copyToClipboard(1)" class="btn btn-dark" type="button">Copy</button>
-                    </div>
-
-                    <div class="mb-3 input-success-o input-group">
-                        <span class="input-group-text" style="background: #007bb6;
-                        border-color: #007bb6;
-                        color: #fff;"><i class="fab fa-linkedin-in"></i></span>
-                        <input type="text" value="{{$shareLinks['linkedin']}}" class="form-control form-control-xs solid" id="linkedin-input">
-                        <button type="button" onclick="copyToClipboard(2)" class="btn btn-dark" type="button">Copy</button>
-                      </div>
-
-                    <div class="mb-3 input-success-o input-group">
-                        <span class="input-group-text" style="background: #1da1f2;
-                        border-color: #1da1f2;
-                        color: #fff;"><i class="fab fa-twitter"></i></span>
-                        <input type="text" value="{{$shareLinks['twitter']}}" class="form-control form-control-sm solid" id="twitter-input">
-                        <button type="button" onclick="copyToClipboard(3)" class="btn btn-dark" type="button">Copy</button>
-                      </div>
-                  </div>
 
 
 
                @if ($claimStatus)
+               <p class="card-text">Hi {{$investorRawData['investor_name']}}, You have already claimed your ${{$currentReward['reward']}} reward for {{$currentReward['date']}},
+               </p>
                    <button type="button" class="btn btn-danger">
                       Reward Claimed
                    </button>
                @else
+               <p class="card-text">Hi {{$investorRawData['investor_name']}}, You can now claim your ${{$currentReward['reward']}} reward for {{$currentReward['date']}},
+                To claim your reward you need to share the post to at least one social media
+            </p>
+
+            <div class="card-text w-50 d-flex justify-content-center row"> <!-- Add justify-content-center class -->
+                <div class="mb-3 input-success-o input-group">
+                  <span class="input-group-text" style="background: #3b5998;
+                  border-color: #3b5998;
+                  color: #fff;"><i class="fab fa-facebook-f"></i></span>
+                  <input type="text" value="{{$shareLinks['facebook']}}" class="form-control form-control-sm solid" id="facebook-input">
+                  <button type="button" onclick="copyToClipboard(1)" class="btn btn-dark" type="button">Copy</button>
+                </div>
+
+                <div class="mb-3 input-success-o input-group">
+                    <span class="input-group-text" style="background: #007bb6;
+                    border-color: #007bb6;
+                    color: #fff;"><i class="fab fa-linkedin-in"></i></span>
+                    <input type="text" value="{{$shareLinks['linkedin']}}" class="form-control form-control-xs solid" id="linkedin-input">
+                    <button type="button" onclick="copyToClipboard(2)" class="btn btn-dark" type="button">Copy</button>
+                  </div>
+
+                <div class="mb-3 input-success-o input-group">
+                    <span class="input-group-text" style="background: #1da1f2;
+                    border-color: #1da1f2;
+                    color: #fff;"><i class="fab fa-twitter"></i></span>
+                    <input type="text" value="{{$shareLinks['twitter']}}" class="form-control form-control-sm solid" id="twitter-input">
+                    <button type="button" onclick="copyToClipboard(3)" class="btn btn-dark" type="button">Copy</button>
+                  </div>
+              </div>
+
                <button type="button" class="mb-2 btn btn-success" data-bs-toggle="modal"
                data-bs-target="#rewardModal">Claim Reward</button>
                @endif
