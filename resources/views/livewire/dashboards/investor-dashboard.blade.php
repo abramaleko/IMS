@@ -80,7 +80,38 @@
                   </button>
               </div>
                 @endif
-                <p class="card-text">Hi {{$investorRawData['investor_name']}}, You can now claim your ${{$currentReward['reward']}} reward for {{$currentReward['date']}}</p>
+                <p class="card-text">Hi {{$investorRawData['investor_name']}}, You can now claim your ${{$currentReward['reward']}} reward for {{$currentReward['date']}},
+                    To claim your reward you need to share the post to at least one social media
+                </p>
+
+                <div class="card-text w-50 d-flex justify-content-center row"> <!-- Add justify-content-center class -->
+                    <div class="mb-3 input-success-o input-group">
+                      <span class="input-group-text" style="background: #3b5998;
+                      border-color: #3b5998;
+                      color: #fff;"><i class="fab fa-facebook-f"></i></span>
+                      <input type="text" value="{{$shareLinks['facebook']}}" class="form-control form-control-sm solid" id="facebook-input">
+                      <button type="button" onclick="copyToClipboard(1)" class="btn btn-dark" type="button">Copy</button>
+                    </div>
+
+                    <div class="mb-3 input-success-o input-group">
+                        <span class="input-group-text" style="background: #007bb6;
+                        border-color: #007bb6;
+                        color: #fff;"><i class="fab fa-linkedin-in"></i></span>
+                        <input type="text" value="{{$shareLinks['linkedin']}}" class="form-control form-control-xs solid" id="linkedin-input">
+                        <button type="button" onclick="copyToClipboard(2)" class="btn btn-dark" type="button">Copy</button>
+                      </div>
+
+                    <div class="mb-3 input-success-o input-group">
+                        <span class="input-group-text" style="background: #1da1f2;
+                        border-color: #1da1f2;
+                        color: #fff;"><i class="fab fa-twitter"></i></span>
+                        <input type="text" value="{{$shareLinks['twitter']}}" class="form-control form-control-sm solid" id="twitter-input">
+                        <button type="button" onclick="copyToClipboard(3)" class="btn btn-dark" type="button">Copy</button>
+                      </div>
+                  </div>
+
+
+
                @if ($claimStatus)
                    <button type="button" class="btn btn-danger">
                       Reward Claimed
@@ -101,7 +132,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="rewardModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="rewardModal" tabindex="-1" role="dialog" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -109,7 +140,55 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                     </button>
                 </div>
-                <div class="modal-body">Are you sure you want to claim ${{$currentReward['reward']}} to reward address {{$investorRawData['reward_address']}}</div>
+                <div class="modal-body">
+
+                    <p>
+                        Are you sure you want to claim ${{$currentReward['reward']}} to reward address {{$investorRawData['reward_address']}}
+                    </p>
+                    <p>
+                        To confirm please share the posted links on one of your social media accounts
+                    </p>
+                    @error('socialPosts')
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        {{$message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                        </button>
+                    </div>
+                    @enderror
+                    <div class="row">
+                        <div class="mb-3 input-success-o input-group">
+                            <span class="input-group-text" style="background: #3b5998;
+                            border-color: #3b5998;
+                            color: #fff;"><i class="fab fa-facebook-f"></i></span>
+                            <input type="text" wire:model.defer="facebook_post_link"  class="form-control form-control-xs solid" placeholder="Enter the link to your facebook post">
+                          </div>
+                          @error('facebook_post_link')
+                          <span class="text-danger fw-bold d-block">{{$message}}</span>
+                        @enderror
+
+                          <div class="mb-3 input-success-o input-group">
+                              <span class="input-group-text" style="background: #007bb6;
+                              border-color: #007bb6;
+                              color: #fff;"><i class="fab fa-linkedin-in"></i></span>
+                              <input type="text" wire:model.defer="linkedin_post_link" class="form-control form-control-xs solid" placeholder="Enter the link to your linkedIn post">
+                            </div>
+                            @error('linkedin_post_link')
+                            <span class="text-danger fw-bold d-block">{{$message}}</span>
+                          @enderror
+
+                          <div class="mb-3 input-success-o input-group">
+                              <span class="input-group-text" style="background: #1da1f2;
+                              border-color: #1da1f2;
+                              color: #fff;"><i class="fab fa-twitter"></i></span>
+                              <input type="text" wire:model.defer="twitter_post_link" class="form-control form-control-xs solid" placeholder="Enter the link to your twitter post">
+                            </div>
+                            @error('twitter_post_link')
+                            <span class="text-danger fw-bold d-block">{{$message}}</span>
+                          @enderror
+                    </div>
+
+                </div>
                 <div class="modal-footer">
                     <div wire:loading.remove>
                         <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Cancel</button>
@@ -203,5 +282,32 @@
         window.addEventListener('closeRewardModal', event => {
       $("#rewardModal").modal('toggle');
       })
+
+      function copyToClipboard(el) {
+      // Get the input element
+      switch (el) {
+        case 1:
+         var input = document.getElementById("facebook-input");
+            break;
+        case 2:
+         var input = document.getElementById("linkedin-input");
+        break;
+        case 3:
+         var input = document.getElementById("twitter-input");
+            break;
+      }
+      // Select the input text
+      input.select();
+      input.setSelectionRange(0, 99999); // For mobile devices
+
+      // Copy the selected text to the clipboard
+      document.execCommand("copy");
+
+      // Deselect the input text
+      input.blur();
+
+      // Provide visual feedback
+      alert("Copied to clipboard ..");
+    }
     </script>
 @endsection

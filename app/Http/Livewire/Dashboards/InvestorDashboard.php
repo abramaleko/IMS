@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dashboards;
 
+use App\Models\ClaimMessage;
 use App\Models\CommunityClaimPeriod;
 use App\Models\Investors;
 use App\Models\monthlyRewardClaims;
@@ -10,11 +11,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Carbon\Carbon;
-use GrahamCampbell\ResultType\Success;
-
+use ShareButtons;
 class InvestorDashboard extends Component
 {
     public $withdrawalState,$totalReward=0,$investorAssets=[],$investorRawData,$investorRewards=[];
+    public $shareLinks,$facebook_post_link,$linkedin_post_link,$twitter_post_link;
 
     public $currentReward,$claimStatus;
 
@@ -104,6 +105,15 @@ class InvestorDashboard extends Component
     }
 
     public function claimReward(){
+
+        if($this->facebook_post_link ||$this->linkedin_post_link ||$this->twitter_post_link){
+
+            $this->validate([
+                'facebook_post_link' => 'nullable|url',
+                'linkedin_post_link' => 'nullable|url',
+                'twitter_post_link' => 'nullable|url',
+            ]);
+
         $investor=Auth::user();
 
         monthlyRewardClaims::create([
@@ -111,6 +121,10 @@ class InvestorDashboard extends Component
             'claim_period' => $this->currentReward['date'],
             'reward_address' =>  $this->investorRawData['reward_address'],
             'amount' => $this->currentReward['reward'],
+            'facebook' => $this->facebook_post_link,
+            'linkedin' => $this->linkedin_post_link,
+            'twitter' => $this->twitter_post_link,
+
         ]);
 
         $investor->notify(new RewardClaim($this->currentReward['reward'],$this->investorRawData['reward_address'],$this->currentReward['date']));
@@ -120,7 +134,10 @@ class InvestorDashboard extends Component
         $this->getClaimStatus();
 
         $this->dispatchBrowserEvent('closeRewardModal');
-
+        }
+        else{
+            $this->addError('socialPosts', 'You need to share to at least one of your social media accounts and paste the link here');
+        }
     }
 
     //checks if investor has claimed current month reward
@@ -129,5 +146,15 @@ class InvestorDashboard extends Component
         $this->claimStatus=monthlyRewardClaims::where('investor_id',$investor->investor_id)
                                                ->where('claim_period',$this->currentReward['date'])
                                                ->first();
+
+        if (! $this->claimStatus) {
+          $claimMessage=ClaimMessage::first();
+          $this->shareLinks=ShareButtons::page($claimMessage->link,$claimMessage->message)
+        ->facebook()
+        ->twitter()
+        ->linkedin(['rel' => 'follow'])
+        ->getRawLinks();
+        }
+
     }
 }

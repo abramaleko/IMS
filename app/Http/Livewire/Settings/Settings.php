@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Settings;
 
+use App\Models\ClaimMessage;
 use App\Models\CommunityClaimPeriod;
 use App\Models\Offices;
 use App\Models\Projects;
@@ -19,6 +20,8 @@ class Settings extends Component
    public $projects,$project_name,$selectedProject,$project_status,$project_color;
    public $users,$f_name,$l_name,$email;
    public $community_claim_period;
+   public $claim_info,$claim_link,$claim_message;
+
     public function render()
     {
         return view('livewire.settings.settings');
@@ -30,6 +33,9 @@ class Settings extends Component
         $this->projects=Projects::all();
         $this->users=User::all();
         $this->community_claim_period=CommunityClaimPeriod::first()->value;
+        $this->claim_info=ClaimMessage::first();
+        $this->claim_link=$this->claim_info->link;
+        $this->claim_message=$this->claim_info->message;
     }
 
     public function updateCommunityClaimStatus(){
@@ -183,8 +189,22 @@ class Settings extends Component
         $this->users=User::all();
      }
 
+     public function updateClaimMessage(){
 
+    $this->validate([
+        'claim_link' => 'required|string',
+        'claim_message' => 'required|string',
+        ]);
 
+       $this->claim_info->link=$this->claim_link;
+       $this->claim_info->message=$this->claim_message;
+       $this->claim_info->save();
+
+       session()->flash('updatedClaimMessage', 'Successfully updated claim message');
+
+       $this->dispatchBrowserEvent('closeClaimMessageModal');
+
+     }
 
 
 }

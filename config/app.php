@@ -178,6 +178,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         App\Providers\CommunityClaimProvider::class,
+        Kudashevs\ShareButtons\Providers\ShareButtonsServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -206,6 +207,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'ShareButtons' => Kudashevs\ShareButtons\Facades\ShareButtonsFacade::class,
+
         // ...
     ])->toArray(),
 

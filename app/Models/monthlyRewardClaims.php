@@ -13,6 +13,9 @@ class monthlyRewardClaims extends Model
         'investor_id',
         'claim_period',
         'reward_address',
-        'amount'
+        'amount',
+        'facebook',
+        'twitter',
+        'linkedin'
     ];
 }

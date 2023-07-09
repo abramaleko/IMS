@@ -15,7 +15,11 @@
         .form-control{
             background: #f0ebeb;
         }
+        textarea {
+        height: 100px !important;
+        }
   </style>
+
 @livewireStyles
 
 @endsection
@@ -60,6 +64,10 @@ window.addEventListener('communityClaimModal', event => {
 
 window.addEventListener('closeAssetTypeModal', event => {
       $("#newAssetTypeName").modal('toggle');
+})
+
+window.addEventListener('closeClaimMessageModal', event => {
+      $("#claim-message").modal('toggle');
 })
 
 </script>
