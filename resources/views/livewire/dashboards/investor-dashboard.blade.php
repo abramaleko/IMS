@@ -31,6 +31,7 @@
                                     <th scope="col">Asset Type</th>
                                     <th scope="col">Asset Address</th>
                                     <th scope="col">Staked</th>
+                                    <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,6 +40,13 @@
                                         <th>{{ $asset['asset_type'] }}</th>
                                         <td>{{ $asset['asset_address'] }}</td>
                                         <td>{{ $asset['stake'] ? 'True' : 'False' }}</td>
+                                        <td>
+                                            @if ($asset['verified'])
+                                            <span class="badge badge-success">Verified</span>
+                                            @else
+                                            <span class="badge badge-warning">Not Verified</span>
+                                            @endif
+                                      </td>
                                     </tr>
                                 @empty
                                     <h4 class="text-warning">No suffient data found!</h4>
