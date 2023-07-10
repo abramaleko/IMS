@@ -77,10 +77,10 @@ class NewContract extends Component
 
         //check for duplicates
         foreach ($this->contractAssets as $asset) {
-          if (in_array($this->newAssetAddress,$asset)) {
+            if ($asset['asset_address'] === $this->newAssetAddress) {
             $this->addError('newAssetAddress', 'Asset address should be unique');
             return;
-          }
+            }
         }
 
         array_push($this->contractAssets,[
@@ -93,7 +93,7 @@ class NewContract extends Component
             'staked' => $this->newStakeOption == "1" ? true : false,
         ]);
 
-        $this->reset(['newAsset','newAssetId','newAssetName','newAssetType','newRewardLevel','newPayoutAmout','newAssetAddress']);
+        $this->reset(['newAsset','newAssetId','newAssetName','newAssetType','newRewardLevel','newPayoutAmout','newAssetAddress','newStakeOption']);
 
         $this->dispatchBrowserEvent('closenewContractAssettModal');
 
