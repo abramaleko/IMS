@@ -7,6 +7,7 @@ use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SharedDocsController;
+use App\Http\Controllers\UpdateClaimsRecordController;
 use App\Http\Controllers\UserInvestorController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -107,3 +108,5 @@ Route::group([],function(){
 
     Route::get('/investor-contract/{id}/edit',[UserInvestorController::class,'editContract'])->name('user.investment-profile.edit');
 });
+
+Route::get('/update-claims',UpdateClaimsRecordController::class)->name('updateClaims');

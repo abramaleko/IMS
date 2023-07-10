@@ -728,6 +728,13 @@
             </li>
              @endcan
 
+             @role('Super Administrator')
+             <li class="{{Request::is('updateClaims') ? 'mm-active' : ''}}">
+                <a class="" href="{{route('updateClaims')}}">
+                    <span class="nav-text">Confirm Claims</span>
+                </a>
+            </li>
+             @endrole
                 </ul>
 				<div class="copyright">
 					<p><strong>{{env('APP_NAME','Demo')}}</strong> © 2021 All Rights Reserved</p>
