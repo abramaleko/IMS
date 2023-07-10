@@ -737,8 +737,8 @@
              @endrole
                 </ul>
 				<div class="copyright">
-					<p><strong>{{env('APP_NAME','Demo')}}</strong> © 2021 All Rights Reserved</p>
-					<p class="fs-12">Made by <span class="heart"></span>  <a href="mailto: abrahammaleko@gmail.com" target="_blank">by Abraham Maleko</a></p>
+					<p><strong>{{env('APP_NAME','Demo')}}</strong> © 2023 All Rights Reserved</p>
+					<p class="fs-12">Made by <span class="heart"></span>  <a href="mailto: abrahammaleko@gmail.com" target="_blank">{{env('APP_NAME')}}</a></p>
 				</div>
 			</div>
         </div>
