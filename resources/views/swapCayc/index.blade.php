@@ -44,12 +44,15 @@
     </div>
 
     <div class="col-xl-6">
-        <div class="card">
+        <div class="card bg-light">
             <div class="pb-2 border-1 card-header">
                 <h5 class="card-title">Scan the qr code to your wallet</h5>
             </div>
             <div class="card-body">
-                <img src="" alt="qr-code" id="qr-code" height="250" width="300">
+                <div id="qr-container">
+
+                </div>
+                {{-- <img src="" alt="qr-code" id="qr-code" height="250" width="300"> --}}
                 {{-- <img src="https://www.researchgate.net/profile/Anna-Schmaus-Klughammer/publication/330015992/figure/fig3/AS:709929996394496@1546271909478/Prototype-Demo-QR-code.ppm" alt="qr-code" id="qr-code" height="250" width="300"> --}}
                 <p class="pt-4 card-text">
                     Supported wallets for solana pay are

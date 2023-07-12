@@ -132,12 +132,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _solana_pay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @solana/pay */ "./node_modules/@solana/pay/lib/esm/createQR.js");
 
 var SOLANA_PAY_URL = "solana:https://github.com/abramaleko";
-var qr = (0,_solana_pay__WEBPACK_IMPORTED_MODULE_0__.createQR)(SOLANA_PAY_URL, 300, 'white', 'black');
-var qrImg = document.getElementById('qr-code');
-
-var imgSrc = qr._qr.createDataURL(100, 20);
-
-qrImg.setAttribute("src", imgSrc);
+var qr = (0,_solana_pay__WEBPACK_IMPORTED_MODULE_0__.createQR)(SOLANA_PAY_URL, 300, 'white', 'red');
+var qrContainer = document.getElementById('qr-container');
+qr.append(qrContainer);
 })();
 
 /******/ })()
