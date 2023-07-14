@@ -25,6 +25,7 @@
                 </p>
 
                 <div class="mb-4 col-xl-12">
+                    <input type="hidden" id="user-id" value="{{auth()->user()->id}}">
                     <label class="form-label font-w600">Enter amount of CAYC TO Swap<span class="text-danger scale5 ms-2">*</span></label>
                       <input type="number" class="mb-2 form-control solid"  aria-label="name" id="swap-amount">
                   </div>

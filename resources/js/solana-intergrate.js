@@ -7,6 +7,9 @@ const SOLANA_PAY_URL="https://solana-backedn.onrender.com/api/merchant";
 const button=document.getElementById("generateQrCode")
 button.addEventListener("click",function(){
 
+    //get user-id
+    var user_id=document.getElementById("user-id").value;
+
    //get the input value
    var amount=document.getElementById("swap-amount").value;
    if (amount == '') {
@@ -16,6 +19,7 @@ button.addEventListener("click",function(){
 
     const transactionRequestUrl = new URL(SOLANA_PAY_URL);
     transactionRequestUrl.searchParams.set('amount', amount.toString());
+    transactionRequestUrl.searchParams.set('user_id', user_id.toString());
 
     // URL-encode the transaction request URL
     const encodedUrl = encodeURIComponent(transactionRequestUrl.toString());

@@ -135,7 +135,9 @@ __webpack_require__.r(__webpack_exports__);
 var SOLANA_PAY_URL = "https://solana-backedn.onrender.com/api/merchant";
 var button = document.getElementById("generateQrCode");
 button.addEventListener("click", function () {
-  //get the input value
+  //get user-id
+  var user_id = document.getElementById("user-id").value; //get the input value
+
   var amount = document.getElementById("swap-amount").value;
 
   if (amount == '') {
@@ -144,7 +146,8 @@ button.addEventListener("click", function () {
   }
 
   var transactionRequestUrl = new URL(SOLANA_PAY_URL);
-  transactionRequestUrl.searchParams.set('amount', amount.toString()); // URL-encode the transaction request URL
+  transactionRequestUrl.searchParams.set('amount', amount.toString());
+  transactionRequestUrl.searchParams.set('user_id', user_id.toString()); // URL-encode the transaction request URL
 
   var encodedUrl = encodeURIComponent(transactionRequestUrl.toString()); // Create the Solana link with the encoded URL
 
