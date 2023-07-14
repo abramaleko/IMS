@@ -130,11 +130,34 @@ var __webpack_exports__ = {};
   \*******************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _solana_pay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @solana/pay */ "./node_modules/@solana/pay/lib/esm/createQR.js");
+ // const SOLANA_PAY_URL="solana:https://solana-backedn.onrender.com/api/merchant";
 
-var SOLANA_PAY_URL = "solana:https://github.com/abramaleko";
-var qr = (0,_solana_pay__WEBPACK_IMPORTED_MODULE_0__.createQR)(SOLANA_PAY_URL, 300, 'white', 'red');
-var qrContainer = document.getElementById('qr-container');
-qr.append(qrContainer);
+var SOLANA_PAY_URL = "https://solana-backedn.onrender.com/api/merchant";
+var button = document.getElementById("generateQrCode");
+button.addEventListener("click", function () {
+  //get the input value
+  var amount = document.getElementById("swap-amount").value;
+
+  if (amount == '') {
+    alert("Enter amount first to generate qr code");
+    return false;
+  }
+
+  var transactionRequestUrl = new URL(SOLANA_PAY_URL);
+  transactionRequestUrl.searchParams.set('amount', amount.toString()); // URL-encode the transaction request URL
+
+  var encodedUrl = encodeURIComponent(transactionRequestUrl.toString()); // Create the Solana link with the encoded URL
+
+  var solanaLink = "solana:".concat(encodedUrl); // Create the QR code with the encoded URL
+
+  var qr = (0,_solana_pay__WEBPACK_IMPORTED_MODULE_0__.createQR)(solanaLink, 250, 'white', 'red'); //shows the qr code
+
+  var qrContainer = document.getElementById('qr-container');
+  qr.append(qrContainer);
+  document.getElementById("qr-code-col").style.display = "block"; //disables the input
+
+  button.setAttribute("disabled", "true");
+});
 })();
 
 /******/ })()
