@@ -687,13 +687,6 @@
             </li>
              @endcan
 
-             <li class="{{Request::is('swap-cayc.index') ? 'mm-active' : ''}}">
-                <a class="" href="{{route('swap-cayc.index')}}">
-                    <i class="flaticon-017-clipboard"></i>
-                    <span class="nav-text">SWAP CAYC</span>
-                </a>
-            </li>
-
              @role('Investor')
              <li class="{{Request::is(['user.investment-profile']) ? 'mm-active' : ''}}">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -705,6 +698,12 @@
                     <li><a href="{{route('user.investment-profile')}}">Investor Profile</a></li>
                     <li><a href="{{route('user.investment-contracts')}}">Investor Contracts</a></li>
                 </ul>
+            </li>
+            <li class="{{Request::is('swap-cayc.index') ? 'mm-active' : ''}}">
+                <a class="" href="{{route('swap-cayc.index')}}">
+                    <i class="flaticon-381-network"></i>
+                    <span class="nav-text">SWAP CAYC</span>
+                </a>
             </li>
              @endrole
 
