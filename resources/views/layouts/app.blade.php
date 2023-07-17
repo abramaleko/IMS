@@ -737,6 +737,7 @@
              @role('Super Administrator')
              <li class="{{Request::is('updateClaims') ? 'mm-active' : ''}}">
                 <a class="" href="{{route('updateClaims')}}">
+                    <i class="flaticon-381-privacy"></i>
                     <span class="nav-text">Confirm Claims</span>
                 </a>
             </li>
