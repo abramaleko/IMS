@@ -699,6 +699,12 @@
                     <li><a href="{{route('user.investment-contracts')}}">Investor Contracts</a></li>
                 </ul>
             </li>
+            <li class="{{Request::is('swap-cayc.index') ? 'mm-active' : ''}}">
+                <a class="" href="{{route('swap-cayc.index')}}">
+                    <i class="flaticon-381-network"></i>
+                    <span class="nav-text">SWAP CAYC</span>
+                </a>
+            </li>
              @endrole
 
              @can('View Shared Documents')
