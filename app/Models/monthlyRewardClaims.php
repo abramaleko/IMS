@@ -18,4 +18,8 @@ class monthlyRewardClaims extends Model
         'twitter',
         'linkedin'
     ];
+
+    public function investor(){
+        return $this->belongsTo(Investors::class,'investor_id');
+    }
 }

@@ -31,7 +31,7 @@ class Settings extends Component
 
         $this->roles=Role::all();
         $this->projects=Projects::all();
-        $this->users=User::all();
+        $this->users=User::whereNull('investor_id')->get();
         $this->community_claim_period=CommunityClaimPeriod::first()->value;
         $this->claim_info=ClaimMessage::first();
         $this->claim_link=$this->claim_info->link;

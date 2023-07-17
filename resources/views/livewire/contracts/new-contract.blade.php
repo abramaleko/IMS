@@ -33,9 +33,9 @@
                           @enderror
                         </div>
                         <div class="mb-4 col-xl-6 col-md-6">
-                            <label class="form-label font-w600">Amount (Tshs)<span class="text-danger scale5 ms-2">*</span></label>
+                            <label class="form-label font-w600">Amount ($)<span class="text-danger scale5 ms-2">*</span></label>
                               <input type="number" wire:model.debounce.500ms="amount"  class="mb-2 form-control solid"  aria-label="name">
-                              <small class="text-muted">{{$amount > 0 ? number_format($amount) : $amount}} Tshs</small>
+                              <small class="text-muted">{{$amount > 0 ? number_format($amount) : $amount}} $</small>
                               @error('amount')
                                 <span class="text-danger fw-bold d-block">{{$message}}</span>
                               @enderror

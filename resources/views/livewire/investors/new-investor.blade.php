@@ -128,7 +128,7 @@
                             @enderror
                         </div>
                         <div class="mb-4 col-xl-6 col-md-6">
-                            <label class="form-label font-w600">Reward Address</label>
+                            <label class="form-label font-w600">Reward Address<span class="text-danger scale5 ms-2">*</span></label>
                             <input type="text" wire:model.defer="reward_address" class="mb-2 form-control solid " aria-label="name">
                              @error('reward_address')
                               <span class="text-danger fw-bold">{{$message}}</span>
