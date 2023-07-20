@@ -1,7 +1,7 @@
 import { createQR,encodeURL} from '@solana/pay';
 
-// const SOLANA_PAY_URL="solana:https://solana-backedn.onrender.com/api/merchant";
 const SOLANA_PAY_URL="https://solana-backedn.onrender.com/api/merchant";
+// const SOLANA_PAY_URL="https://caycims.onrender.com/api/merchant";
 
 
 const button=document.getElementById("generateQrCode")

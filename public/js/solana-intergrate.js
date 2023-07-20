@@ -130,9 +130,9 @@ var __webpack_exports__ = {};
   \*******************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _solana_pay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @solana/pay */ "./node_modules/@solana/pay/lib/esm/createQR.js");
- // const SOLANA_PAY_URL="solana:https://solana-backedn.onrender.com/api/merchant";
 
-var SOLANA_PAY_URL = "https://solana-backedn.onrender.com/api/merchant";
+var SOLANA_PAY_URL = "https://solana-backedn.onrender.com/api/merchant"; // const SOLANA_PAY_URL="https://caycims.onrender.com/api/merchant";
+
 var button = document.getElementById("generateQrCode");
 button.addEventListener("click", function () {
   //get user-id

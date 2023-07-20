@@ -13,6 +13,8 @@ class CAYCSWAP extends Model
 
     protected $fillable=[
         'user_id',
+        'amount',
         'transaction_id'
     ];
 }
+
