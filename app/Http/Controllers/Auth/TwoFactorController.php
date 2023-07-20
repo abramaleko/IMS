@@ -16,7 +16,7 @@ class TwoFactorController extends Controller
 
     public function index()
     {
-        return view('auth.twoFactor');
+        return view('auth.twofactor');
     }
 
     public function store(Request $request)
