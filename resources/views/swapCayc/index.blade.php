@@ -40,6 +40,13 @@
                     <li><span class="align-middle me-2"><i class="ti-angle-right"></i></span> Crypto Please</li>
                     <li><span class="align-middle me-2"><i class="ti-angle-right"></i></span> Kitepay</li>
                 </ul>
+                <p class="pt-4 card-text">
+                    You can also manually send tokens to the address below and our team will confirrm it
+                </p>
+                <div class="mb-3 input-success-o input-group">
+                    <input type="text" value="EmPnKvMjNLFyPTx5kau2U41JXqD9qUXKY3Qig8hvz5Ek" class="form-control form-control-sm solid" id="wallet-addres">
+                    <button type="button" onclick="copyToClipboard(1)" class="btn btn-dark" type="button">Copy</button>
+                  </div>
             </div>
             <div class="card-footer d-sm-flex justify-content-between align-items-center">
                 <button type="button" id="generateQrCode" class="btn btn-primary">GENERATE QR CODE</button>
@@ -47,7 +54,7 @@
         </div>
     </div>
 
-    <div class="col-xl-6" id="qr-code-col" style="display: none;">
+    <div class="col-xl-6" id="qr-code-col" style="display: none; height:35rem;">
         <div class="card bg-light">
             <div class="pb-2 border-1 card-header">
                 <h5 class="card-title">Scan the qr code to your wallet</h5>
@@ -68,6 +75,25 @@
 @section('scripts')
 
   <script type="module" src="{{asset('js/solana-intergrate.js')}}"></script>
+  <script>
+     function copyToClipboard(el) {
+      // Get the input element
+         var input = document.getElementById("wallet-addres");
+
+      // Select the input text
+      input.select();
+      input.setSelectionRange(0, 99999); // For mobile devices
+
+      // Copy the selected text to the clipboard
+      document.execCommand("copy");
+
+      // Deselect the input text
+      input.blur();
+
+      // Provide visual feedback
+      alert("Copied to clipboard ..");
+    }
+  </script>
   {{-- <script defer src="https://unpkg.com/alpinejs@3.10.1/dist/cdn.min.js"></script> --}}
 
 @endsection
