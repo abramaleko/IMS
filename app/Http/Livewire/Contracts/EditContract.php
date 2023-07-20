@@ -78,7 +78,7 @@ class EditContract extends Component
     public function addContractAsset(){
         $this->validate([
             'newAsset' => 'required',
-            'newAssetAddress' => 'required|string'
+            'newAssetAddress' => 'required|string|unique:contract_assets,asset_address',
         ]);
 
         array_push($this->contractAssets,[
