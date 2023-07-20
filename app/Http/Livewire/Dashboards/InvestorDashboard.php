@@ -143,8 +143,9 @@ class InvestorDashboard extends Component
     //checks if investor has claimed current month reward
     public function getClaimStatus(){
         $investor=Auth::user();
+        $claimPeriod=$this->currentReward ? $this->currentReward['date']: "";
         $this->claimStatus=monthlyRewardClaims::where('investor_id',$investor->investor_id)
-                                               ->where('claim_period',$this->currentReward['date'])
+                                               ->where('claim_period',$claimPeriod)
                                                ->first();
 
         if (! $this->claimStatus) {
