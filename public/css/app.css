@@ -663,13 +663,13 @@ select {
 .z-50 {
   z-index: 50;
 }
-.my-3 {
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
-}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -689,8 +689,8 @@ select {
 .mb-4 {
   margin-bottom: 1rem;
 }
-.mt-2 {
-  margin-top: 0.5rem;
+.mb-0 {
+  margin-bottom: 0px;
 }
 .mt-4 {
   margin-top: 1rem;
@@ -698,17 +698,17 @@ select {
 .ml-4 {
   margin-left: 1rem;
 }
-.mb-0 {
-  margin-bottom: 0px;
+.mt-2 {
+  margin-top: 0.5rem;
 }
 .mt-3 {
   margin-top: 0.75rem;
 }
-.ml-2 {
-  margin-left: 0.5rem;
-}
 .mr-2 {
   margin-right: 0.5rem;
+}
+.ml-2 {
+  margin-left: 0.5rem;
 }
 .ml-1 {
   margin-left: 0.25rem;
@@ -722,6 +722,9 @@ select {
 .-mt-px {
   margin-top: -1px;
 }
+.mt-5 {
+  margin-top: 1.25rem;
+}
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -730,9 +733,6 @@ select {
 }
 .-mr-2 {
   margin-right: -0.5rem;
-}
-.mt-5 {
-  margin-top: 1.25rem;
 }
 .block {
   display: block;
@@ -885,9 +885,6 @@ select {
 }
 .overflow-hidden {
   overflow: hidden;
-}
-.break-all {
-  word-break: break-all;
 }
 .rounded-md {
   border-radius: 0.375rem;
