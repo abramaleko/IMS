@@ -42,7 +42,7 @@ class EditContract extends Component
 
       foreach ($contract->assets as $asset) {
         array_push($this->contractAssets,[
-            'id' => $asset->id,
+            'id' => $asset->asset_id,
             'asset_name' => $asset->assetInfo->asset_name,
             'asset_type' => $asset->assetInfo->asset_type,
             'reward_level' =>$asset->assetInfo->reward_level,
