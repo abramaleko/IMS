@@ -70,5 +70,9 @@ window.addEventListener('closeClaimMessageModal', event => {
       $("#claim-message").modal('toggle');
 })
 
+window.addEventListener('closeRateModal', event => {
+      $("#rate-modal").modal('toggle');
+})
+
 </script>
 @endsection
