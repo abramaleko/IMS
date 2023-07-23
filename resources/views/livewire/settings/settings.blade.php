@@ -1,7 +1,7 @@
 <div>
             {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
     <div class="row">
-        <div class="col-xl-6">
+        <div class="col-xl-4">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Community Claim Period</h4>
@@ -60,7 +60,7 @@
             </div>
         </div>
 
-        <div class="col-xl-6">
+        <div class="col-xl-4">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Community Claim Message</h4>
@@ -122,6 +122,8 @@
                 </div>
             </div>
         </div>
+
+        @livewire('settings.conversion-rate')
     </div>
     <div class="row">
         <!-- roles-->
