@@ -55,6 +55,7 @@
                               Not Uploaded
                             @endif
                         </p>
+                        <p class="mb-2 font-w600 d-flex"><span class="custom-label-2">Unreal Kingdoms In Game ID : </span><span class="font-w400" style="padding-left: 1rem;">{{$investor->ukuid ?? 'Not added'}}</span></p>
 
                     </div>
                 </div>

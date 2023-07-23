@@ -24,6 +24,10 @@
 
 @livewire('profile.user-info')
 
+@role('Investor')
+  @livewire('profile.in-game-id')
+@endrole
+
 @livewire('profile.update-password')
 
 @livewire('profile.two-factor')
