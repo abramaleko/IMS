@@ -9,6 +9,9 @@ class Investors extends Model
 {
     use HasFactory;
 
+    const investorId = 1;
+    const kinId = 2;
+
       /**
      * The attributes that are mass assignable.
      *

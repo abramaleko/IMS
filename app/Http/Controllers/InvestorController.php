@@ -46,11 +46,11 @@ class InvestorController extends Controller
         // If download id =1 ->download investor id copy
         //            id=2 -> download next of kin id copy
 
-        if ($download_id == 1) {
+        if ($download_id == Investors::investorId) {
             return response()->download(storage_path('app/'.$investor->id_path));
         }
 
-        if ($download_id==2) {
+        if ($download_id == Investors::kinId) {
             return response()->download(storage_path('app/'.$investor->nxt_kin_id_path));
         }
 
